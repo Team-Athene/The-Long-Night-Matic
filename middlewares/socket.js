@@ -21,7 +21,7 @@ io.on('connection', async (socket) => {
 			await redis.lpush(`${user.room}`, JSON.stringify(quiz))
 			let q = JSON.parse(await redis.lrange(`${user.room}`, 0, 0))
 			let qId = Math.floor(Math.random() * q.length)
-			let newQuiz = q.splice(qId, 1)
+			let newQuiz = q.filter((item) => item !== q[qId])
 			await redis.lpop(`${user.room}`)
 			await redis.lpush(`${user.room}`, JSON.stringify(newQuiz))
 			// console.log('Log: q[qId]', q[qId])
@@ -37,7 +37,7 @@ io.on('connection', async (socket) => {
 		let quiz = JSON.parse(await redis.lrange(`${room}`, 0, 0))
 		console.log('Log: quiz', quiz)
 		let qid = Math.floor(Math.random() * (index + 1))
-		let newQuiz = q.splice(qid, 1)
+		let newQuiz = quiz.filter((item) => item !== q[qid])
 		await redis.lpop(`${user.room}`)
 		await redis.lpush(`${user.room}`, JSON.stringify(newQuiz))
 		delete q[qid].ans
