@@ -6,6 +6,11 @@ BasicGame.Quiz = function (game) {
 	this.currentQues = null;
 	this.walkerLife = 3;
 	this.index = 0
+	this.status = null
+	this.tween = null
+	this.timeText = null
+	this.timeInSeconds = 6;
+	this.popup = null
 
 
 };
@@ -13,9 +18,15 @@ BasicGame.Quiz.prototype = {
 
 	create: function () {
 
+
+
 		this.background = this.add.sprite(0, 0, 'quizBG');
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
+
+
+
+
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -26,26 +37,7 @@ BasicGame.Quiz.prototype = {
 		}
 		this.myJSON = this.cache.getJSON('quizJson')
 		console.log("TCL: myJSON", this.myJSON)
-		this.question = this.add.sprite(0, 0, 'question');
-		this.question.width = window.innerWidth/1.2
-		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -35);
-
-		this.option1 = this.add.button(window.innerWidth/5.5, 110, 'option');
-		this.option2 = this.add.button(0, 0, 'option').alignTo(this.option1, Phaser.RIGHT_CENTER, 16);
-		this.option3 = this.add.button(window.innerWidth/5.5, 165, 'option');
-		this.option4 = this.add.button(0, 0, 'option').alignTo(this.option3, Phaser.RIGHT_CENTER, 16);
-
-		// this.option1.scale.setTo(window.innerWidth/4)
-		this.option1.width = window.innerWidth/3.5
-		this.option2.width = window.innerWidth/3.5
-		this.option3.width = window.innerWidth/3.5
-		this.option4.width = window.innerWidth/3.5
-
-
-		// this.add.text(window.innerWidth/2.2, window.innerHeight/1.7, '123456', {fill : 'yellow'});
-
-
-
+		
 
 		this.quizJson = this.myJSON
 		// let ranNums = [],
@@ -58,6 +50,35 @@ BasicGame.Quiz.prototype = {
 		this.gameQuiz()
 
 	},
+	tick: function() {
+		console.log('Inside Tick');
+		
+        this.timeInSeconds--;
+        //find how many complete minutes are left
+        var minutes = Math.floor(this.timeInSeconds / 60);
+        //find the number of seconds left
+        //not counting the minutes
+        var seconds = this.timeInSeconds - (minutes * 60);
+        //make a string showing the time
+        // var timeString = this.addZeros(minutes) + ":" + this.addZeros(seconds);
+        var timeString = this.addZeros(seconds);
+        //display the string in the text field
+        this.timeText.text = timeString;
+        //check if the time is up
+        if (this.timeInSeconds == 0) {
+            //remove the timer from the game
+            this.time.events.remove(this.timer);
+            //call your game over or other code here!
+            this.timeText.text="Now";
+        }
+    },
+    addZeros: function(num) {
+        if (num < 10) {
+            // num = "0" + num;
+            num = num;
+        }
+        return num;
+    },
 
 	update: function () {
 
@@ -111,7 +132,7 @@ BasicGame.Quiz.prototype = {
 		this.whiteWalker.animations.play('walker', 1, true);
       },
 
-	startGame: function (pointer) {
+	startGame:  function (pointer) {
 
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
 		//this.music.stop();
@@ -120,19 +141,7 @@ BasicGame.Quiz.prototype = {
 		this.state.start('Game');
 
 	},
-	optButton1: function() {
-		console.log('Option1');
-	},
-	optButton2: function() {
-		console.log('Option2');
-	},
-	optButton3: function() {
-		console.log('Option3');
-	},
-	optButton4: function() {
-		console.log('Option4');
-	},
-	checkAnswer: function(button) {
+	checkAnswer: async function(button) {
 		console.log("TCL: value", button.value)
 		console.log("TCL: this.myJSON[button.j].ans", this.currentQues.ans)
 		if(button.value ==  this.currentQues.ans) {
@@ -155,6 +164,11 @@ BasicGame.Quiz.prototype = {
 			this.aryaLife--;
 			this.index--
 			this.quesText.destroy()
+			this.question.destroy()
+			this.option1.destroy()
+			this.option2.destroy()
+			this.option3.destroy()
+			this.option4.destroy()
 			this.option1Text.destroy()
 			this.option2Text.destroy()
 			this.option3Text.destroy()
@@ -163,14 +177,56 @@ BasicGame.Quiz.prototype = {
 			this.livesA.destroy();
 			this.arya.destroy();
 			this.whiteWalker.destroy();
-			this.gameQuiz()
+			if(this.aryaLife > 0) {		
+			this.popup = this.add.sprite(0, 0, 'popUp').alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/3.4);
+			// this.popup.alpha = 0.8;
+			// this.popup.anchor.set(0.5);
+			this.status = this.add.text(0, 0, 'Wrong!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);;
+			console.log('Stop 0');
+				// if ((this.tween !== null && this.tween.isRunning) || this.popup.scale.x === 1)
+				// {
+				// 	console.log('Stop 1');
+					this.timeText = this.add.text(this.world.centerX, this.world.centerY+50, "COUNT");
+					//turn the text white
+							console.log('Stop 3');
+					this.timeText.fill = "#ffffff";
+					//center the text
+					this.timeText.anchor.set(0.5, 0.5);
+					//set up a loop timer
+					this.timer =  this.time.events.loop(Phaser.Timer.SECOND, this.tick, this);
+                    console.log("TCL: this.timer", this.timer)
+					// this.popup.destroy()
+					// this.gameQuiz()
+					
+				//  Create a tween that will pop-open the window, but only if it's not already tweening or open
+				// this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+				
+				console.log('Stop 2');
+			//make a text field
+			}
 		}
 
 	},
 	gameQuiz: function(){
+		if(this.popup!=null){
+			this.popup.destroy()
+			this.timeText.destroy()
+			this.status.destroy()
+		}
 		this.animateCharacter()
 		let j = this.random(this.index)
 		console.log("TCL: j", j)
+		this.question = this.add.sprite(0, 0, 'question');
+		this.question.width = window.innerWidth/1.2
+		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -35);
+		this.option1 = this.add.button(window.innerWidth/5.5, 110, 'option');
+		this.option2 = this.add.button(0, 0, 'option').alignTo(this.option1, Phaser.RIGHT_CENTER, 16);
+		this.option3 = this.add.button(window.innerWidth/5.5, 165, 'option');
+		this.option4 = this.add.button(0, 0, 'option').alignTo(this.option3, Phaser.RIGHT_CENTER, 16);
+		this.option1.width = window.innerWidth/3.5
+		this.option2.width = window.innerWidth/3.5
+		this.option3.width = window.innerWidth/3.5
+		this.option4.width = window.innerWidth/3.5
 		this.option1.value = this.currentQues.a
 		this.option1.j = j
 		this.option1.inputEnabled = true;        
