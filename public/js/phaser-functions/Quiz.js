@@ -13,7 +13,6 @@ BasicGame.Quiz.prototype = {
 
 	create: function () {
 
-		// this.add.sprite(0,0,'preloaderBackground');
 		this.background = this.add.sprite(0, 0, 'quizBG');
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
@@ -57,29 +56,6 @@ BasicGame.Quiz.prototype = {
 
 
 		this.gameQuiz()
-		// while (index--) {
-		// }
-// Callback
-// hurtPlayer: function(player, enemy) {
-//     console.log(this.hitCounter);
-// //do this during overlap
-//     this.isHit = true;
-//     this.canShoot = false;
-//     enemy.play('attacking');
-//     player.play('hit');
-//     var live;
-//     live = this.lives.getFirstAlive();
-
-//     if (live) {
-//         live.destroy();
-//     }
-//     this.livesCounter--;
-
-//     if (this.livesCounter == 0) {
-//         player.destroy();
-//         this.playerDies(); // Use your custom function when the player dies
-//     }
-// },
 
 	},
 

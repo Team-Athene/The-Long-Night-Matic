@@ -14,8 +14,8 @@ BasicGame.Preloader.prototype = {
 		this.load.json('quizJson', '../assets/quiz.json');
 
 		this.preloadBar = this.add.sprite(400, 600, 'preloaderBar')
-
-		this.load.setPreloadSprite(this.preloadBar)
+		this.preloadBar.anchor.setTo(0.5)
+		this.load.setPreloadSprite(this.preloadBar,0)
 		this.load.spritesheet(
 			'button',
 			'assets/images/button_sprite_sheet.png',
