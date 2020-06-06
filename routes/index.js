@@ -5,7 +5,7 @@ const controller = require('./controller')
 router.get('/', (req, res) => {
 	res.render('index')
 })
-router.post('/newGame', controller.newGame)
-router.post('/joinGame', controller.joinGame)
+// router.post('/newGame', controller.newGame)
+// router.post('/joinGame', controller.joinGame)
 
 module.exports = router

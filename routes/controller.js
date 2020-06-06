@@ -31,6 +31,10 @@ exports.joinGame = async (req, res, next) => {
 		}
 		if ((await redis.llen(`${room}`)) == 1) {
 			await redis.lpush(`${room}`, userAddress)
+
+			io.emit('someone-joined', {
+				userAddress,
+			})
 			return res.json({
 				success: true,
 				message: 'Game joined successfully',
