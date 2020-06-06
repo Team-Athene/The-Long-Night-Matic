@@ -5,7 +5,7 @@
         "b": "You’ve not changed.",
         "c": "You look old.",
         "d": "Your hair looks terrible.",
-        "ans": "a"
+        "ans": "You’ve got fat."
     },
     {
         "question": "The actor who played Brother Ray also played which antique-loving TV scoundrel?",
@@ -13,7 +13,7 @@
         "b": "Del Boy Trotter",
         "c": "Rodney Trotter",
         "d": "Lovejoy",
-        "ans": "d"
+        "ans": "Lovejoy"
     },
     {
         "question": "How many kings and queens of Westeros did Lord Varys serve?",
@@ -21,7 +21,7 @@
         "b": "3",
         "c": "4",
         "d": "5",
-        "ans": "c"
+        "ans": "4"
     },
     {
         "question": "Who had the honour of killing Petyr Baelish?",
@@ -29,7 +29,7 @@
         "b": "Sansa Stark",
         "c": "Brienne",
         "d": "Arya Stark",
-        "ans": "d"
+        "ans": "Arya Stark"
     },
     {
         "question": "In Westerosian currency, the two smaller denominations of the Gold Dragon coin are the copper penny and the ___?",
@@ -37,6 +37,6 @@
         "b": "Golden goose",
         "c": "Silver stag",
         "d": "Bronze bull",
-        "ans": "c"
+        "ans": "Silver stag"
     }
 ]
