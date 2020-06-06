@@ -1,11 +1,15 @@
 const socket = io('http://localhost:5000')
 
-function createGame() {}
+// window.onload = () => {
+// 	createGame('denny')
+// }
+
+function createGame(user) {
+	console.log('Log: createGame -> user', user)
+}
 
 function joinGame() {}
 
 function leaveGame() {}
 
 function answerQuiz() {}
-
-function createGame() {}
