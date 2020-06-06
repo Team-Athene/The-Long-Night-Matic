@@ -1,0 +1,42 @@
+[
+    {
+        "question": "What were the first words King Robert said to Ned Stark in episode one of season one?",
+        "a": "You’ve got fat.",
+        "b": "You’ve not changed.",
+        "c": "You look old.",
+        "d": "Your hair looks terrible.",
+        "ans": "a"
+    },
+    {
+        "question": "The actor who played Brother Ray also played which antique-loving TV scoundrel?",
+        "a": "David Dickinson",
+        "b": "Del Boy Trotter",
+        "c": "Rodney Trotter",
+        "d": "Lovejoy",
+        "ans": "d"
+    },
+    {
+        "question": "How many kings and queens of Westeros did Lord Varys serve?",
+        "a": "2",
+        "b": "3",
+        "c": "4",
+        "d": "5",
+        "ans": "c"
+    },
+    {
+        "question": "Who had the honour of killing Petyr Baelish?",
+        "a": "Jon Snow",
+        "b": "Sansa Stark",
+        "c": "Brienne",
+        "d": "Arya Stark",
+        "ans": "d"
+    },
+    {
+        "question": "In Westerosian currency, the two smaller denominations of the Gold Dragon coin are the copper penny and the ___?",
+        "a": "Silver stallion",
+        "b": "Golden goose",
+        "c": "Silver stag",
+        "d": "Bronze bull",
+        "ans": "c"
+    }
+]

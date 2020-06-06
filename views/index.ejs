@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>GOT</title>
+	<script src="phaser.min.js"></script>
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/MainMenu.js"></script>
+	<script src="js/Quiz.js"></script>
+	<script src="js/Create.js"></script>
+	<script src="js/Join.js"></script>
+	<style>
+		body {
+			margin: 0;
+			background: #000;
+		}
+	</style>
+	<script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<script defer src="script.js"></script>
+</head>
+
+<body>
+	<script type="text/javascript">
+		window.onload = function () {
+			var game = new Phaser.Game( window.innerWidth, window.innerHeight, Phaser.AUTO, '' );
+			game.state.add( 'Boot', BasicGame.Boot );
+			game.state.add( 'Preloader', BasicGame.Preloader );
+			game.state.add( 'MainMenu', BasicGame.MainMenu );
+			game.state.add( 'Quiz', BasicGame.Quiz );
+			game.state.add( 'Create', BasicGame.Create );
+			game.state.add( 'Join', BasicGame.Join );
+			game.state.start( 'Boot' );
+		};
+	</script>
+</body>
+
 </html>
