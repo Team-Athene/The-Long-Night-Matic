@@ -1,0 +1,3 @@
+REDIS_PORT = 1234
+REDIS_HOST = redis-xyz.com
+REDIS_PASSWORD = SPp18zxcvbnm7Kq20
