@@ -20,13 +20,29 @@ BasicGame.Quiz.prototype = {
 				this.sound.context.resume();
 			}, this);
 		}
+		this.myJSON = this.cache.getJSON('quizJson')
+		console.log("TCL: myJSON", this.myJSON)
 		this.question = this.add.sprite(0, 0, 'question');
 		this.question.width = window.innerWidth/1.2
-		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -25);
-		this.option1 = this.add.button(window.innerWidth/5.5, 100, 'option', this.optButton1, this);
-		var option2 = this.add.button(0, 0, 'option', this.optButton2, this).alignTo(this.option1, Phaser.RIGHT_CENTER, 16);
-		this.option3 = this.add.button(window.innerWidth/5.5, 155, 'option', this.optButton3, this);
-		var option4 = this.add.button(0, 0, 'option', this.optButton4, this).alignTo(this.option3, Phaser.RIGHT_CENTER, 16);
+		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -35);
+		this.option1 = this.add.button(window.innerWidth/5.5, 110, 'option', this.optButton1, this);
+		this.option2 = this.add.button(0, 0, 'option', this.optButton2, this).alignTo(this.option1, Phaser.RIGHT_CENTER, 16);
+		this.option3 = this.add.button(window.innerWidth/5.5, 165, 'option', this.optButton3, this);
+		this.option4 = this.add.button(0, 0, 'option', this.optButton4, this).alignTo(this.option3, Phaser.RIGHT_CENTER, 16);
+
+		// this.option1.scale.setTo(window.innerWidth/4)
+		this.option1.width = window.innerWidth/3.5
+		this.option2.width = window.innerWidth/3.5
+		this.option3.width = window.innerWidth/3.5
+		this.option4.width = window.innerWidth/3.5
+		this.add.text(0, 0, this.myJSON[0].question ,{font: "18px Arial", fill : 'white'}).alignTo(this.question, Phaser.RIGHT_CENTER, -(this.question.width-20));
+		this.add.text(0, 0, this.myJSON[0].a,{font: "16px Arial", fill : 'yellow'}).alignTo(this.option1, Phaser.RIGHT_CENTER, -(this.option1.width-20));
+		this.add.text(0, 0, this.myJSON[0].b,{font: "16px Arial", fill : 'yellow'}).alignTo(this.option2, Phaser.RIGHT_CENTER, -(this.option2.width-20));
+		this.add.text(0, 0, this.myJSON[0].c,{font: "16px Arial", fill : 'yellow'}).alignTo(this.option3, Phaser.RIGHT_CENTER, -(this.option3.width-20));
+		this.add.text(0, 0, this.myJSON[0].d,{font: "16px Arial", fill : 'yellow'}).alignTo(this.option4, Phaser.RIGHT_CENTER, -(this.option4.width-20));
+		// this.add.text(window.innerWidth/2.2, window.innerHeight/1.7, '123456', {fill : 'yellow'});
+
+
 
 		this.livesW = this.add.group();
 		var x = 150; // use your values
@@ -62,6 +78,20 @@ BasicGame.Quiz.prototype = {
         var walker = this.whiteWalker.animations.add('walker',[0, 1, 2, 4, 2, 1], 4, false);
 		this.whiteWalker.animations.play('walker', 1, true);
 		
+
+		let ranNums = [],
+        quizJson = this.myJSON,
+        currentQues = {},
+		index = this.myJSON.length,
+		j = 0;
+
+		while (index--) {
+			j = Math.floor(Math.random() * (index+1));
+			ranNums.push(this.myJSON[j]);
+			currentQues = this.myJSON[j]
+            console.log("TCL: currentQues", currentQues)
+			quizJson.splice(j,1);
+		}
 // Callback
 // hurtPlayer: function(player, enemy) {
 //     console.log(this.hitCounter);
@@ -89,22 +119,14 @@ BasicGame.Quiz.prototype = {
 	update: function () {
 
 		//	Do some nice funky main menu effect here
-		var myJSON = this.cache.getJSON('quizJson')
-		console.log("TCL: myJSON", myJSON)
-		var nums = [1,2,3,4,5,6,7,8,9,10],
-		ranNums = [],
-		quizJson = myJSON
-		i = myJSON.length,
-		j = 0;
 
-		while (i--) {
-			j = Math.floor(Math.random() * (i+1));
-			ranNums.push(myJSON[j]);
-			current
-			nums.splice(j,1);
-		}
+		
 
 	},
+    animateCharacter: function(sprite, event) {
+        sprite.play('animate');
+      },
+
 	startGame: function (pointer) {
 
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)

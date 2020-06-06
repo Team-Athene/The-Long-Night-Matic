@@ -21,7 +21,7 @@ BasicGame.Quiz.prototype = {
 			}, this);
 		}
 		this.myJSON = this.cache.getJSON('quizJson')
-		console.log("TCL: myJSON", myJSON)
+		console.log("TCL: myJSON", this.myJSON)
 		this.question = this.add.sprite(0, 0, 'question');
 		this.question.width = window.innerWidth/1.2
 		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -25);
@@ -91,7 +91,9 @@ BasicGame.Quiz.prototype = {
 	update: function () {
 
 		//	Do some nice funky main menu effect here
-		// var nums = [1,2,3,4,5,6,7,8,9,10],
+        // var nums = [1,2,3,4,5,6,7,8,9,10],
+        console.log('UPDATE');
+        
 		let ranNums = [],
         quizJson = this.myJSON,
         currentQues = {},
