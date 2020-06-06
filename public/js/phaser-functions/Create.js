@@ -12,7 +12,7 @@ BasicGame.Create.prototype = {
 
         // this.add.sprite(0,0,'preloaderBackground');
         console.log("InSide Create");
-        
+        createGame('dennyMon')
 		this.background = this.add.sprite(0, 0, 'createBG');
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
