@@ -14,9 +14,7 @@ io.on('connection', async (socket) => {
 		socket.emit('game-created', room)
 	})
 	socket.on('join-game', async (user) => {
-		console.log('Log: user', user)
 		const user2 = { id: socket.id, userAddress: user.userAddress }
-		console.log('Log: user2', user2)
 		if ((await redis.llen(`${user.room}`)) == 1) {
 			socket.join(user.room)
 			await redis.lpush(`${user.room}`, JSON.stringify(user2))
@@ -26,11 +24,12 @@ io.on('connection', async (socket) => {
 			let newQuiz = q.splice(qId, 1)
 			await redis.lpop(`${user.room}`)
 			await redis.lpush(`${user.room}`, JSON.stringify(newQuiz))
+			// console.log('Log: q[qId]', q[qId])
 			delete q[qId].ans
 			io.in(user.room).emit('user-joined', {
 				userAddress: user.userAddress,
 				quiz: q[qId],
-				qId,
+				...qId,
 			})
 		}
 	})
