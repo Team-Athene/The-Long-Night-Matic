@@ -54,11 +54,10 @@ io.on('connection', async (socket) => {
 			})
 		}
 	})
-	socket.on('close-quiz', async (room) => {
+	socket.on('leave', async (room) => {
 		console.log('Log: room', room)
-		let users = await redis.lrange(`${room}`, 0, -1)
-		console.log('Log: users', users)
-		// await redis.lpop(`${user.room}`)
+		socket.leave(room)
+		await redis.del(`${room}`)
 	})
 })
 
