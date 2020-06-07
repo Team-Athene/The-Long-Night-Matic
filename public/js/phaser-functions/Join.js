@@ -3,6 +3,7 @@ BasicGame.Join = function (game) {
 	this.startButton = null
 	this.RoomID = "Start Typing"
 	this.RoomIDText = null
+	this.currentQues = null;
 }
 
 BasicGame.Join.prototype = {
@@ -97,9 +98,10 @@ keyDel: function (pointer) {
 		joinGame(this.RoomID, 'mekhamol')
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
+			this.currentQuiz = data.quiz
+			this.state.start('Quiz')
 		})
         console.log("TCL: this.valid", this.valid)
-		this.state.start('Quiz')
 
 	},
 
