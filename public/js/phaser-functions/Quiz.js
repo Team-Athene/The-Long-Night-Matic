@@ -50,7 +50,7 @@ BasicGame.Quiz.prototype = {
 		this.gameQuiz()
 
 	},
-	tick: function() {
+	tick: async function() {
 		console.log('Inside Tick');
 		
         this.timeInSeconds--;
@@ -61,15 +61,16 @@ BasicGame.Quiz.prototype = {
         var seconds = this.timeInSeconds - (minutes * 60);
         //make a string showing the time
         // var timeString = this.addZeros(minutes) + ":" + this.addZeros(seconds);
-        var timeString = this.addZeros(seconds);
+        var timeString = await this.addZeros(seconds);
         //display the string in the text field
         this.timeText.text = timeString;
         //check if the time is up
         if (this.timeInSeconds == 0) {
-            //remove the timer from the game
-            this.time.events.remove(this.timer);
-            //call your game over or other code here!
             this.timeText.text="Now";
+            //remove the timer from the game
+            await this.time.events.remove(this.timer);
+            //call your game over or other code here!
+			this.gameQuiz()
         }
     },
     addZeros: function(num) {
@@ -142,13 +143,16 @@ BasicGame.Quiz.prototype = {
 
 	},
 	checkAnswer: async function(button) {
-		console.log("TCL: value", button.value)
-		console.log("TCL: this.myJSON[button.j].ans", this.currentQues.ans)
 		if(button.value ==  this.currentQues.ans) {
 			console.log("Correct")
 			this.walkerLife--;
 			this.index--
 			this.quesText.destroy()
+			this.question.destroy()
+			this.option1.destroy()
+			this.option2.destroy()
+			this.option3.destroy()
+			this.option4.destroy()
 			this.option1Text.destroy()
 			this.option2Text.destroy()
 			this.option3Text.destroy()
@@ -156,8 +160,27 @@ BasicGame.Quiz.prototype = {
 			this.livesW.destroy();
 			this.livesA.destroy();
 			this.arya.destroy();
-			this.whiteWalker.destroy();
-			this.gameQuiz()
+			this.whiteWalker.destroy();			
+			if(this.walkerLife > 0) {		
+				this.popup = this.add.sprite(this.world.centerX, this.world.centerY, 'popUp');
+				this.popup.alpha = 0.8;
+				this.popup.anchor.set(0.5);
+	
+				this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+				this.status = this.add.text(0, 0, 'Correct!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);
+				this.timeInSeconds = 6;
+				this.timeText = this.add.text(this.world.centerX, this.world.centerY+70, "COUNT");
+				this.timeText.fill = "#ffffff";
+				this.timeText.anchor.set(0.5, 0.5);
+				this.timer =  this.time.events.loop(Phaser.Timer.SECOND, this.tick, this);
+			}
+			else {
+				this.popup = this.add.sprite(this.world.centerX, this.world.centerY, 'popUp');
+				this.popup.alpha = 0.8;
+				this.popup.anchor.set(0.5);
+				this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+				this.status = this.add.text(0, 0, 'Correct!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);
+			}
 		}
 		else {
 			console.log("Wrong")
@@ -178,31 +201,17 @@ BasicGame.Quiz.prototype = {
 			this.arya.destroy();
 			this.whiteWalker.destroy();
 			if(this.aryaLife > 0) {		
-			this.popup = this.add.sprite(0, 0, 'popUp').alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/3.4);
-			// this.popup.alpha = 0.8;
-			// this.popup.anchor.set(0.5);
+			this.popup = this.add.sprite(this.world.centerX, this.world.centerY, 'popUp');
+			this.popup.alpha = 0.8;
+			this.popup.anchor.set(0.5);
+
+			this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
 			this.status = this.add.text(0, 0, 'Wrong!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);;
-			console.log('Stop 0');
-				// if ((this.tween !== null && this.tween.isRunning) || this.popup.scale.x === 1)
-				// {
-				// 	console.log('Stop 1');
-					this.timeText = this.add.text(this.world.centerX, this.world.centerY+50, "COUNT");
-					//turn the text white
-							console.log('Stop 3');
-					this.timeText.fill = "#ffffff";
-					//center the text
-					this.timeText.anchor.set(0.5, 0.5);
-					//set up a loop timer
-					this.timer =  this.time.events.loop(Phaser.Timer.SECOND, this.tick, this);
-                    console.log("TCL: this.timer", this.timer)
-					// this.popup.destroy()
-					// this.gameQuiz()
-					
-				//  Create a tween that will pop-open the window, but only if it's not already tweening or open
-				// this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-				
-				console.log('Stop 2');
-			//make a text field
+			this.timeInSeconds = 6;
+			this.timeText = this.add.text(this.world.centerX, this.world.centerY+70, "COUNT");
+			this.timeText.fill = "#ffffff";
+			this.timeText.anchor.set(0.5, 0.5);
+			this.timer =  this.time.events.loop(Phaser.Timer.SECOND, this.tick, this);
 			}
 		}
 
