@@ -1,6 +1,118 @@
 [
     {
-        "question": "What were the first words King Robert said to Ned Stark in episode one of season one?",
+        "question": "What is the Iron Bank’s representative, called?",
+        "a": "Quorin Halfhand",
+        "b": "Xaro Xhoan Daxon",
+        "c": "Howard from the Halifax",
+        "d": "Tycho Nestoris",
+        "ans": "Tycho Nestoris"
+    },
+    {
+        "question": "Who was responsible for the creation of the Night King?",
+        "a": "The Lord of Light",
+        "b": "The Children of the Forest",
+        "c": "The Drowned God",
+        "d": "The First Men",
+        "ans": "The Children of the Forest"
+    },
+    {
+        "question": "What was Hodor called before he got his tragic door-holding nickname?",
+        "a": "Wylis",
+        "b": "Horys",
+        "c": "Myrys",
+        "d": "Gladys",
+        "ans": "Wylis"
+    },
+    {
+        "question": "Dany’s dragons are called Drogon, Viserion and __?",
+        "a": "Dougal",
+        "b": "Vhagar",
+        "c": "Rhaegar",
+        "d": "Balerion",
+        "ans": "Rhaegar"
+    },
+    {
+        "question": "Who was Ned Stark’s predecessor as Robert Baratheon’s Hand?",
+        "a": "Jaime Lannister",
+        "b": "Jon Arryn",
+        "c": "Tywin Lannister",
+        "d": "Ser Jorah Mormont",
+        "ans": "b"
+    },
+    {
+        "question": "Iwan Rheon(Ramsay Bolton) was almost cast as which character?",
+        "a": "Jon Snow",
+        "b": "Gendry",
+        "c": "Podrick Payne",
+        "d": "Rob Stark",
+        "ans": "Jon Snow"
+    },
+    {
+        "question": "Who said:'I don’t plan on knitting by the fire while men fight for me'?",
+        "a": "Lyanna Mormont",
+        "b": "Sansa Stark",
+        "c": "Brienne of Tarth",
+        "d": "Olenna Tyrell",
+        "ans": "Lyanna Mormont"
+    },
+    {
+        "question": "Who’s this grizzled chap with Ser Jorah and Daenerys?",
+        "a": "Ser Elrick Sarsfield",
+        "b": "Ser Balon Swann",
+        "c": "Ser Royland Degore",
+        "d": "Ser Barristan Selmy",
+        "ans": "Ser Barristan Selmy"
+    },
+    {
+        "question": "Which of these characters is dead?",
+        "a": "Jaqen H’Gar",
+        "b": "Nymeria the direwolf",
+        "c": "Hot Pie",
+        "d": "Eddison Tollett",
+        "ans": "Eddison Tollett"
+    },
+    {
+        "question": "Where is the House of Black and White?",
+        "a": "Qarth",
+        "b": "Braavos",
+        "c": "Meereen",
+        "d": "No one knows",
+        "ans": "Braavos"
+    },
+    {
+        "question": "In which King’s Landing slum did Gendry grow up?",
+        "a": "Flea Bottom",
+        "b": "Rat Bottom",
+        "c": "Rhaenys’s Hill",
+        "d": "Dragonpit",
+        "ans": "a"
+    },
+    {
+        "question": "What is the name of Arya’s sword?",
+        "a": "Ice",
+        "b": "Pointy",
+        "c": "Fang",
+        "d": "Needle",
+        "ans": "Needle"
+    },
+    {
+        "question": "What was the Red Keep’s chief mouser (RIP) called?",
+        "a": "Ser Pounce",
+        "b": "Maester Paw",
+        "c": "Lady Claws",
+        "d": "The Bastard",
+        "ans": "Ser Pounce"
+    },
+    {
+        "question": "Which relative did Euron Greyjoy murder to take the Iron Islands?",
+        "a": "His brother",
+        "b": "His uncle",
+        "c": "His nephew",
+        "d": "His cousin",
+        "ans": "a"
+    },
+    {
+        "question": "What were the first words King Robert said to Ned Stark in episode 1 of season 1?",
         "a": "You’ve got fat.",
         "b": "You’ve not changed.",
         "c": "You look old.",
@@ -32,11 +144,19 @@
         "ans": "Arya Stark"
     },
     {
-        "question": "In Westerosian currency, the two smaller denominations of the Gold Dragon coin are the copper penny and the ___?",
+        "question": "The smaller denominations of the Gold Dragon coin are the copper penny and the ___?",
         "a": "Silver stallion",
         "b": "Golden goose",
         "c": "Silver stag",
         "d": "Bronze bull",
         "ans": "Silver stag"
+    },
+    {
+        "question": "Whose last words were: 'Give me something for the pain, and let me die'?",
+        "a": "Stannis Baratheon",
+        "b": "Hodor",
+        "c": "Robert Baratheon",
+        "d": "Walder Frey",
+        "ans": "c"
     }
 ]

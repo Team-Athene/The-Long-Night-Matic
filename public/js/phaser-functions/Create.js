@@ -6,16 +6,20 @@ BasicGame.Create.prototype = {
 	create: function () {
 		console.log('InSide Create')
 		createGame('dennyMon')
-		let room = 123456
+		this.room = 123457
+		socket.on('game-created', (roomid) => {
+			console.log('Log: roomid', roomid)
+			this.room = roomid
+		})
 		this.background = this.add.sprite(0, 0, 'createBG')
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
-		this.add.text(
-			window.innerWidth / 2.2,
-			window.innerHeight / 1.7,
-			`${room}`,
-			{ fill: 'yellow' }
-		)
+		// this.add.text(
+		// 	window.innerWidth / 2.2,
+		// 	window.innerHeight / 1.7,
+		// 	`${this.room}`,
+		// 	{ fill: 'yellow' }
+		// )
 
 		this.mainButton = this.add.button(
 			window.innerWidth / 3.5,
@@ -37,16 +41,21 @@ BasicGame.Create.prototype = {
 				this.sound.context.resume()
 			}, this)
 		}
-		socket.on('game-created', (roomid) => {
-			console.log('Log: roomid', roomid)
-			room = roomid
-		})
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
 		})
 	},
 
-	update: function () {
+	update: function () {		
+		if(this.roomId != null){
+		this.roomId.destroy()
+	}
+	this.roomId = this.add.text(
+		window.innerWidth / 2.2,
+		window.innerHeight / 1.7,
+		`${this.room}`,
+		{ fill: 'yellow' }
+	)
 	},
 
 	startGame: function (pointer) {
