@@ -1,25 +1,38 @@
-
 BasicGame.Join = function (game) {
-
-	this.mainButton = null;
-	this.startButton = null;
-
-};
+	this.mainButton = null
+	this.startButton = null
+}
 
 BasicGame.Join.prototype = {
-
 	create: function () {
+		// this.add.sprite(0,0,'preloaderBackground');
+		console.log('InSide Join')
 
-        // this.add.sprite(0,0,'preloaderBackground');
-        console.log("InSide Join");
-        
-		this.background = this.add.sprite(0, 0, 'joinBG');
+		this.background = this.add.sprite(0, 0, 'joinBG')
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
-		this.startButton = this.add.button(window.innerWidth/1.6, window.innerHeight/1.2, 'startGame', this.startGame, this, 2, 1, 0);
+		this.startButton = this.add.button(
+			window.innerWidth / 1.6,
+			window.innerHeight / 1.2,
+			'startGame',
+			this.startGame,
+			this,
+			2,
+			1,
+			0
+		)
 		this.startButton.width = 150
 		this.startButton.height = 70
-		this.mainButton = this.add.button(window.innerWidth/3.5,  window.innerHeight/1.2, 'mainMenu', this.mainMenu, this, 2, 1, 0);
+		this.mainButton = this.add.button(
+			window.innerWidth / 3.5,
+			window.innerHeight / 1.2,
+			'mainMenu',
+			this.mainMenu,
+			this,
+			2,
+			1,
+			0
+		)
 		this.mainButton.width = 150
 		this.mainButton.height = 70
 		this.music = this.add.audio('got')
@@ -27,36 +40,35 @@ BasicGame.Join.prototype = {
 		this.music.autoplay = true
 		if (this.sound.usingWebAudio && this.sound.context.state !== 'running') {
 			this.input.onDown.addOnce(function () {
-				this.sound.context.resume();
-			}, this);
+				this.sound.context.resume()
+			}, this)
 		}
+		let k = prompt('ENTER ROOM NUMBER ?')
+		joinGame(k, 'mekhamol')
+		socket.on('user-joined', (data) => {
+			console.log('Log: user-joined data', data)
+		})
 	},
 
 	update: function () {
-
 		//	Do some nice funky main menu effect here
-
 	},
 
 	startGame: function (pointer) {
-
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
 		//this.music.stop();
-        console.log('Start');
+		console.log('Start')
 
 		//	And start the actual game
-		this.state.start('Quiz');
+		this.state.start('Quiz')
+	},
 
-    },
-    
 	mainMenu: function (pointer) {
-
 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
 		//this.music.stop();
-        console.log('mainMenu');
+		console.log('mainMenu')
 
 		//	And start the actual game
-		this.state.start('MainMenu');
-
-	}
-};
+		this.state.start('MainMenu')
+	},
+}

@@ -11,11 +11,11 @@ BasicGame.Preloader.prototype = {
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
 
-		this.load.json('quizJson', '../assets/quiz.json');
+		this.load.json('quizJson', '../assets/quiz.json')
 
 		this.preloadBar = this.add.sprite(400, 600, 'preloaderBar')
 		this.preloadBar.anchor.setTo(0.5)
-		this.load.setPreloadSprite(this.preloadBar,0)
+		this.load.setPreloadSprite(this.preloadBar, 0)
 		this.load.spritesheet(
 			'button',
 			'assets/images/button_sprite_sheet.png',
@@ -37,7 +37,7 @@ BasicGame.Preloader.prototype = {
 		this.music = this.add.audio('got')
 		this.music.autoplay = true
 		this.music.loop = true
-		//   this.music.play()
+		// this.music.play()
 	},
 
 	create: function () {
