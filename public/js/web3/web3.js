@@ -1,4 +1,6 @@
+console.log(contractABI)
 let account
+;<img src='https://img.shields.io/badge/Node.js-10.15.3-green?style=for-the-badge&logo=Node.js'></img>
 window.addEventListener('load', async () => {
 	// Modern dapp browsers...
 	if (window.ethereum) {
