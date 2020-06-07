@@ -65,18 +65,17 @@ keyDel: function (pointer) {
 
 },
 	keyPress: function(char) {
-		console.log("PING")
 		console.log("TCL: char", char)
 		if(char=="DEL"){
-			this.RoomID = this.RoomID.slice(0, -1);	
-            console.log("TCL: newStr", this.RoomID)
-		} else if(this.RoomID == "Start Typing"){
-			this.RoomID = char
-			if(char == "DEL"){
-				this.RoomID = "Start Typing"
+			if(this.RoomID != "Start Typing"){
+				this.RoomID = this.RoomID.slice(0, -1);	
 			}
 		} else {
+			if(this.RoomID == "Start Typing"){
+				this.RoomID = char
+			} else {
 			this.RoomID = this.RoomID+char
+			}
 		}
 		console.log("TCL: this.RoomID", this.RoomID)
 	},
@@ -86,9 +85,9 @@ keyDel: function (pointer) {
 		}
 		this.RoomIDText = this.add.text(
 				window.innerWidth / 2.2,
-				window.innerHeight / 1.65,
+				window.innerHeight / 1.6,
 				`${this.RoomID}`,
-				{ fill: 'yellow' }
+				{ fill: 'yellow' , align:'center', font: "18px Arial" }
 			)
 	
 	},
@@ -99,7 +98,9 @@ keyDel: function (pointer) {
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
 		})
+        console.log("TCL: this.valid", this.valid)
 		this.state.start('Quiz')
+
 	},
 
 	mainMenu: function (pointer) {

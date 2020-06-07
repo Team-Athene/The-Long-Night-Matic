@@ -54,7 +54,7 @@ BasicGame.Create.prototype = {
 		window.innerWidth / 2.2,
 		window.innerHeight / 1.7,
 		`${this.room}`,
-		{ fill: 'yellow' }
+		{ fill: 'yellow', align:'center', font: "20px Arial"}
 	)
 	},
 

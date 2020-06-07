@@ -19,6 +19,12 @@ BasicGame.Quiz.prototype = {
 	create: function () {
 
 
+		// joinGame(this.RoomID, 'mekhamol')
+		// socket.on('user-joined', (data) => {
+		// 	console.log('Log: user-joined data', data)
+		// })
+        // console.log("TCL: this.valid", this.valid)
+		// this.state.start('Quiz')
 
 		this.background = this.add.sprite(0, 0, 'quizBG');
 		this.background.width = window.innerWidth
