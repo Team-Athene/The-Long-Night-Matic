@@ -14,8 +14,19 @@ BasicGame.Join.prototype = {
 		this.background.height = window.innerHeight
 		
 		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);
-		// this.input.keyboard.on('keydown-DEL', this.keyPress, context);
 
+		this.clearButton = this.add.button(
+			window.innerWidth / 2.1,
+			window.innerHeight / 1.5,
+			'clear',
+			this.keyDel,
+			this,
+			2,
+			1,
+			0
+		)
+		this.clearButton.width = 100
+		this.clearButton.height = 40
 		this.startButton = this.add.button(
 			window.innerWidth / 1.6,
 			window.innerHeight / 1.2,
@@ -49,11 +60,21 @@ BasicGame.Join.prototype = {
 			}, this)
 		}
 	},
+keyDel: function (pointer) {
+	this.keyPress('DEL')
 
+},
 	keyPress: function(char) {
+		console.log("PING")
 		console.log("TCL: char", char)
-		if(this.RoomID == "Start Typing"){
+		if(char=="DEL"){
+			this.RoomID = this.RoomID.slice(0, -1);	
+            console.log("TCL: newStr", this.RoomID)
+		} else if(this.RoomID == "Start Typing"){
 			this.RoomID = char
+			if(char == "DEL"){
+				this.RoomID = "Start Typing"
+			}
 		} else {
 			this.RoomID = this.RoomID+char
 		}
@@ -65,7 +86,7 @@ BasicGame.Join.prototype = {
 		}
 		this.RoomIDText = this.add.text(
 				window.innerWidth / 2.2,
-				window.innerHeight / 1.7,
+				window.innerHeight / 1.65,
 				`${this.RoomID}`,
 				{ fill: 'yellow' }
 			)

@@ -22,6 +22,7 @@ BasicGame.Boot.prototype = {
         this.load.spritesheet('whiteWalker', '../assets/images/whiteWalker_sprite_sheet.png',385,350,4)
 		this.load.spritesheet('startGame', '../assets/images/startGame_sprite_sheet.png',265,98);
 		this.load.spritesheet('mainMenu', '../assets/images/mainMenu_sprite_sheet.png',265,98);
+		this.load.spritesheet('clear', '../assets/images/clear.png',159,46);
 
     },
 
