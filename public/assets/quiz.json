@@ -5,7 +5,7 @@
         "b": "Xaro Xhoan Daxon",
         "c": "Howard from the Halifax",
         "d": "Tycho Nestoris",
-        "ans": "Tycho Nestoris"
+        "ans": "d"
     },
     {
         "question": "Who was responsible for the creation of the Night King?",
@@ -13,7 +13,7 @@
         "b": "The Children of the Forest",
         "c": "The Drowned God",
         "d": "The First Men",
-        "ans": "The Children of the Forest"
+        "ans": "b"
     },
     {
         "question": "What was Hodor called before he got his tragic door-holding nickname?",
@@ -21,7 +21,7 @@
         "b": "Horys",
         "c": "Myrys",
         "d": "Gladys",
-        "ans": "Wylis"
+        "ans": "a"
     },
     {
         "question": "Dany’s dragons are called Drogon, Viserion and __?",
@@ -29,7 +29,7 @@
         "b": "Vhagar",
         "c": "Rhaegar",
         "d": "Balerion",
-        "ans": "Rhaegar"
+        "ans": "c"
     },
     {
         "question": "Who was Ned Stark’s predecessor as Robert Baratheon’s Hand?",
@@ -45,7 +45,7 @@
         "b": "Gendry",
         "c": "Podrick Payne",
         "d": "Rob Stark",
-        "ans": "Jon Snow"
+        "ans": "a"
     },
     {
         "question": "Who said:'I don’t plan on knitting by the fire while men fight for me'?",
@@ -53,7 +53,7 @@
         "b": "Sansa Stark",
         "c": "Brienne of Tarth",
         "d": "Olenna Tyrell",
-        "ans": "Lyanna Mormont"
+        "ans": "a"
     },
     {
         "question": "Who’s this grizzled chap with Ser Jorah and Daenerys?",
@@ -61,7 +61,7 @@
         "b": "Ser Balon Swann",
         "c": "Ser Royland Degore",
         "d": "Ser Barristan Selmy",
-        "ans": "Ser Barristan Selmy"
+        "ans": "d"
     },
     {
         "question": "Which of these characters is dead?",
@@ -69,7 +69,7 @@
         "b": "Nymeria the direwolf",
         "c": "Hot Pie",
         "d": "Eddison Tollett",
-        "ans": "Eddison Tollett"
+        "ans": "d"
     },
     {
         "question": "Where is the House of Black and White?",
@@ -77,7 +77,7 @@
         "b": "Braavos",
         "c": "Meereen",
         "d": "No one knows",
-        "ans": "Braavos"
+        "ans": "b"
     },
     {
         "question": "In which King’s Landing slum did Gendry grow up?",
@@ -93,7 +93,7 @@
         "b": "Pointy",
         "c": "Fang",
         "d": "Needle",
-        "ans": "Needle"
+        "ans": "d"
     },
     {
         "question": "What was the Red Keep’s chief mouser (RIP) called?",
@@ -101,7 +101,7 @@
         "b": "Maester Paw",
         "c": "Lady Claws",
         "d": "The Bastard",
-        "ans": "Ser Pounce"
+        "ans": "a"
     },
     {
         "question": "Which relative did Euron Greyjoy murder to take the Iron Islands?",
@@ -117,7 +117,7 @@
         "b": "You’ve not changed.",
         "c": "You look old.",
         "d": "Your hair looks terrible.",
-        "ans": "You’ve got fat."
+        "ans": "a"
     },
     {
         "question": "The actor who played Brother Ray also played which antique-loving TV scoundrel?",
@@ -125,7 +125,7 @@
         "b": "Del Boy Trotter",
         "c": "Rodney Trotter",
         "d": "Lovejoy",
-        "ans": "Lovejoy"
+        "ans": "d"
     },
     {
         "question": "How many kings and queens of Westeros did Lord Varys serve?",
@@ -133,7 +133,7 @@
         "b": "3",
         "c": "4",
         "d": "5",
-        "ans": "4"
+        "ans": "c"
     },
     {
         "question": "Who had the honour of killing Petyr Baelish?",
@@ -141,7 +141,7 @@
         "b": "Sansa Stark",
         "c": "Brienne",
         "d": "Arya Stark",
-        "ans": "Arya Stark"
+        "ans": "d"
     },
     {
         "question": "The smaller denominations of the Gold Dragon coin are the copper penny and the ___?",
@@ -149,7 +149,7 @@
         "b": "Golden goose",
         "c": "Silver stag",
         "d": "Bronze bull",
-        "ans": "Silver stag"
+        "ans": "c"
     },
     {
         "question": "Whose last words were: 'Give me something for the pain, and let me die'?",

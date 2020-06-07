@@ -29,23 +29,36 @@ io.on('connection', async (socket) => {
 			io.in(user.room).emit('user-joined', {
 				userAddress: user.userAddress,
 				quiz: q[qId],
-				...qId,
+				qId,
 			})
 		}
 	})
-	socket.on('next-quiz', async (room) => {
-		let quiz = JSON.parse(await redis.lrange(`${room}`, 0, 0))
-		console.log('Log: quiz', quiz)
+	socket.on('check-quiz', async (data) => {
+		let currentAns = quiz[data.id].ans
 		let qid = Math.floor(Math.random() * (index + 1))
 		let newQuiz = quiz.filter((item) => item !== q[qid])
-		await redis.lpop(`${user.room}`)
-		await redis.lpush(`${user.room}`, JSON.stringify(newQuiz))
+		await redis.lpop(`${data.room}`)
+		await redis.lpush(`${data.room}`, JSON.stringify(newQuiz))
 		delete q[qid].ans
-		io.in(user.room).emit('user-joined', {
-			userAddress: user.userAddress,
-			quiz: q[qid],
-			qid,
-		})
+		if (currentAns == data.ans) {
+			io.in(data.room).emit('ans-and-next-quiz', {
+				currentAns: true,
+				quiz: q[qid],
+				qid,
+			})
+		} else {
+			io.in(data.room).emit('ans-and-next-quiz', {
+				currentAns: false,
+				quiz: q[qid],
+				qid,
+			})
+		}
+	})
+	socket.on('close-quiz', async (room) => {
+		console.log('Log: room', room)
+		let users = await redis.lrange(`${room}`, 0, -1)
+		console.log('Log: users', users)
+		// await redis.lpop(`${user.room}`)
 	})
 })
 
