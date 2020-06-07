@@ -9,7 +9,7 @@ BasicGame.Quiz = function (game) {
 	this.status = null
 	this.tween = null
 	this.timeText = null
-	this.timeInSeconds = 6;
+	this.timeInSeconds = 4;
 	this.popup = null
 
 
@@ -24,9 +24,6 @@ BasicGame.Quiz.prototype = {
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
 
-
-
-
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -36,70 +33,46 @@ BasicGame.Quiz.prototype = {
 			}, this);
 		}
 		this.myJSON = this.cache.getJSON('quizJson')
-		console.log("TCL: myJSON", this.myJSON)
 		
 
 		this.quizJson = this.myJSON
-		// let ranNums = [],
-		// j = 0;
-        // console.log("TCL: j", j)
-		this.index = this.myJSON.length - 1,
-        console.log("TCL: this.index", this.index)
+		this.index = this.myJSON.length - 1
 
 
 		this.gameQuiz()
 
 	},
 	tick: async function() {
-		console.log('Inside Tick');
-		
         this.timeInSeconds--;
-        //find how many complete minutes are left
         var minutes = Math.floor(this.timeInSeconds / 60);
-        //find the number of seconds left
-        //not counting the minutes
         var seconds = this.timeInSeconds - (minutes * 60);
-        //make a string showing the time
-        // var timeString = this.addZeros(minutes) + ":" + this.addZeros(seconds);
         var timeString = await this.addZeros(seconds);
-        //display the string in the text field
         this.timeText.text = timeString;
-        //check if the time is up
         if (this.timeInSeconds == 0) {
             this.timeText.text="Now";
-            //remove the timer from the game
             await this.time.events.remove(this.timer);
-            //call your game over or other code here!
 			this.gameQuiz()
         }
     },
     addZeros: function(num) {
         if (num < 10) {
-            // num = "0" + num;
             num = num;
         }
         return num;
     },
 
 	update: function () {
-
-		//	Do some nice funky main menu effect here
-
-		
 	},
 	random: function (index) {	
 		j = Math.floor(Math.random() * (index+1));
-		console.log("TCL: RANDOM j", j)
-		// ranNums.push(this.myJSON[j]);
 		this.currentQues = this.quizJson[j]
-		console.log("TCL: currentQues", this.currentQues)
 		this.quizJson.splice(j,1);
 		return j
 	},
     animateCharacter: function() {
 
 		this.livesW = this.add.group();
-		var x = 150; // use your values
+		var x = 150;
 		var y = window.innerHeight-50;
 
 		for (var i = 0; i < this.walkerLife; i++) {
@@ -112,7 +85,7 @@ BasicGame.Quiz.prototype = {
 		}
 
 		this.livesA = this.add.group();
-		var p = window.innerWidth - 50; // use your values
+		var p = window.innerWidth - 50;
 		var q = window.innerHeight-50;
 
 		for (var i = 0; i < this.aryaLife; i++) {
@@ -134,13 +107,7 @@ BasicGame.Quiz.prototype = {
       },
 
 	startGame:  function (pointer) {
-
-		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-		//this.music.stop();
-
-		//	And start the actual game
 		this.state.start('Game');
-
 	},
 	checkAnswer: async function(button) {
 		if(button.value ==  this.currentQues.ans) {
@@ -168,7 +135,7 @@ BasicGame.Quiz.prototype = {
 	
 				this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
 				this.status = this.add.text(0, 0, 'Correct!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);
-				this.timeInSeconds = 6;
+				this.timeInSeconds = 4;
 				this.timeText = this.add.text(this.world.centerX, this.world.centerY+70, "COUNT");
 				this.timeText.fill = "#ffffff";
 				this.timeText.anchor.set(0.5, 0.5);
@@ -179,7 +146,18 @@ BasicGame.Quiz.prototype = {
 				this.popup.alpha = 0.8;
 				this.popup.anchor.set(0.5);
 				this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-				this.status = this.add.text(0, 0, 'Correct!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);
+				this.status = this.add.text(0, 0, 'Game Over!!\n You Won the \nGame ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);
+				this.mainButton = this.add.button(
+					this.world.centerX-75, this.world.centerY+60,
+					'mainMenu',
+					this.mainMenu,
+					this,
+					2,
+					1,
+					0
+				)
+				this.mainButton.width = 150
+				this.mainButton.height = 70
 			}
 		}
 		else {
@@ -207,14 +185,35 @@ BasicGame.Quiz.prototype = {
 
 			this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
 			this.status = this.add.text(0, 0, 'Wrong!!\n Your next game\n starts in ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);;
-			this.timeInSeconds = 6;
+			this.timeInSeconds = 4;
 			this.timeText = this.add.text(this.world.centerX, this.world.centerY+70, "COUNT");
 			this.timeText.fill = "#ffffff";
 			this.timeText.anchor.set(0.5, 0.5);
 			this.timer =  this.time.events.loop(Phaser.Timer.SECOND, this.tick, this);
 			}
+			else {
+				this.popup = this.add.sprite(this.world.centerX, this.world.centerY, 'popUp');
+				this.popup.alpha = 0.8;
+				this.popup.anchor.set(0.5);
+				this.tween = this.add.tween(this.popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+				this.status = this.add.text(0, 0, 'Game Over!! \nYou Lost the \nGame ', {fill:'gold', align:'center', font: "28px Arial"}).alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -window.innerHeight/2.5);
+				this.mainButton = this.add.button(
+					this.world.centerX-75, this.world.centerY+60,
+					'mainMenu',
+					this.mainMenu,
+					this,
+					2,
+					1,
+					0
+				)
+				this.mainButton.width = 150
+				this.mainButton.height = 70
+			}
 		}
 
+	},	
+	mainMenu: function (pointer) {
+		this.state.start('MainMenu')
 	},
 	gameQuiz: function(){
 		if(this.popup!=null){
@@ -224,7 +223,6 @@ BasicGame.Quiz.prototype = {
 		}
 		this.animateCharacter()
 		let j = this.random(this.index)
-		console.log("TCL: j", j)
 		this.question = this.add.sprite(0, 0, 'question');
 		this.question.width = window.innerWidth/1.2
 		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER,0, -35);

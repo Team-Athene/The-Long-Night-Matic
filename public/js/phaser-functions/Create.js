@@ -1,11 +1,9 @@
 BasicGame.Create = function (game) {
 	this.mainButton = null
-	// this.startButton = null;
 }
 
 BasicGame.Create.prototype = {
 	create: function () {
-		// this.add.sprite(0,0,'preloaderBackground');
 		console.log('InSide Create')
 		createGame('dennyMon')
 		let room = 123456
@@ -19,9 +17,6 @@ BasicGame.Create.prototype = {
 			{ fill: 'yellow' }
 		)
 
-		// this.startButton = this.add.button(window.innerWidth/1.6, window.innerHeight/1.2, 'startGame', this.startGame, this, 2, 1, 0);
-		// this.startButton.width = 150
-		// this.startButton.height = 70
 		this.mainButton = this.add.button(
 			window.innerWidth / 3.5,
 			window.innerHeight / 1.2,
@@ -52,24 +47,13 @@ BasicGame.Create.prototype = {
 	},
 
 	update: function () {
-		//	Do some nice funky main menu effect here
 	},
 
 	startGame: function (pointer) {
-		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-		//this.music.stop();
-		console.log('Start')
-
-		//	And start the actual game
 		this.state.start('Quiz')
 	},
 
 	mainMenu: function (pointer) {
-		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-		//this.music.stop();
-		console.log('mainMenu')
-
-		//	And start the actual game
 		this.state.start('MainMenu')
 	},
 }

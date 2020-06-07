@@ -6,12 +6,10 @@ BasicGame.MainMenu = function (game) {
 
 BasicGame.MainMenu.prototype = {
 	create: function () {
-		// this.add.sprite(0,0,'preloaderBackground');
 		this.background = this.add.sprite(0, 0, 'preloaderBackground')
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
 		
-		// this.quizJson = this.add.json(0,0,'quizJson')
 		this.playButton = this.add.button(
 			window.innerWidth / 1.45,
 			window.innerHeight / 3,
@@ -61,7 +59,6 @@ BasicGame.MainMenu.prototype = {
 	},
 
 	update: function () {
-		//	Do some nice funky main menu effect here
 	},
 
 	createGame: function (pointer) {
