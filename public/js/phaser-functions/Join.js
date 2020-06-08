@@ -98,8 +98,8 @@ keyDel: function (pointer) {
 		joinGame(this.RoomID, 'mekhamol')
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
-			this.currentQuiz = data.quiz
-			this.state.start('Quiz')
+			// this.currentQuiz = data.quiz
+			this.state.start('Quiz', true, false, data)
 		})
         console.log("TCL: this.valid", this.valid)
 

@@ -43,6 +43,7 @@ BasicGame.Create.prototype = {
 		}
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
+			this.state.start('Quiz', true, false, data)
 		})
 	},
 
@@ -56,10 +57,6 @@ BasicGame.Create.prototype = {
 		`${this.room}`,
 		{ fill: 'yellow', align:'center', font: "20px Arial"}
 	)
-	},
-
-	startGame: function (pointer) {
-		this.state.start('Quiz')
 	},
 
 	mainMenu: function (pointer) {

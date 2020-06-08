@@ -12,6 +12,10 @@ BasicGame.Quiz = function (game) {
 	this.popup = null
 }
 BasicGame.Quiz.prototype = {
+	init: function(data) { 
+    	console.log("TCL: data", data)
+		this.currentQues = data.quiz
+	  },
 	create: function () {
 		// joinGame(this.RoomID, 'mekhamol')
 		// socket.on('user-joined', (data) => {
@@ -59,12 +63,12 @@ BasicGame.Quiz.prototype = {
 	},
 
 	update: function () {},
-	random: function (index) {
-		j = Math.floor(Math.random() * (index + 1))
-		this.currentQues = this.quizJson[j]
-		this.quizJson.splice(j, 1)
-		return j
-	},
+	// random: function (index) {
+	// 	j = Math.floor(Math.random() * (index + 1))
+	// 	this.currentQues = this.quizJson[j]
+	// 	this.quizJson.splice(j, 1)
+	// 	return j
+	// },
 	animateCharacter: function () {
 		this.livesW = this.add.group()
 		var x = 150
@@ -298,7 +302,8 @@ BasicGame.Quiz.prototype = {
 			this.status.destroy()
 		}
 		this.animateCharacter()
-		let j = this.random(this.index)
+		// let j = this.random(this.index)
+		let j = 0
 		this.question = this.add.sprite(0, 0, 'question')
 		this.question.width = window.innerWidth / 1.2
 		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER, 0, -35)
@@ -317,19 +322,19 @@ BasicGame.Quiz.prototype = {
 		this.option1.value = this.currentQues.a
 		this.option1.j = j
 		this.option1.inputEnabled = true
-		this.option1.events.onInputDown.add(this.checkAnswer, this)
+		// this.option1.events.onInputDown.add(this.checkAnswer, this)
 		this.option2.value = this.currentQues.b
 		this.option2.j = j
 		this.option2.inputEnabled = true
-		this.option2.events.onInputDown.add(this.checkAnswer, this)
+		// this.option2.events.onInputDown.add(this.checkAnswer, this)
 		this.option3.value = this.currentQues.c
 		this.option3.j = j
 		this.option3.inputEnabled = true
-		this.option3.events.onInputDown.add(this.checkAnswer, this)
+		// this.option3.events.onInputDown.add(this.checkAnswer, this)
 		this.option4.value = this.currentQues.d
 		this.option4.j = j
 		this.option4.inputEnabled = true
-		this.option4.events.onInputDown.add(this.checkAnswer, this)
+		// this.option4.events.onInputDown.add(this.checkAnswer, this)
 		this.quesText = this.add
 			.text(0, 0, this.currentQues.question, {
 				font: '18px Arial',
