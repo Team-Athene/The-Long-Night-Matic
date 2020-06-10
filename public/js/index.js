@@ -1,5 +1,4 @@
 const socket = io('http://localhost:5000')
-
 // window.onload = () => {
 // 	createGame('denny')
 // }
@@ -10,8 +9,8 @@ console.log('Log: contractAddress', contractAddress)
 const contractAbi = contractABI.abi
 console.log('Log: contractAbi', contractAbi)
 
-const LN = new window.web3.eth.contract(contractAbi, contractAddress)
 function createGame(userAddres) {
+    console.log("TCL: createGame -> LN.methods", LN.methods)
 	socket.emit('create-game', userAddres)
 }
 
