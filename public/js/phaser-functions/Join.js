@@ -66,7 +66,6 @@ keyDel: function (pointer) {
 
 },
 	keyPress: function(char) {
-		console.log("TCL: char", char)
 		if(char=="DEL"){
 			if(this.RoomID != "Start Typing"){
 				this.RoomID = this.RoomID.slice(0, -1);	
@@ -78,7 +77,6 @@ keyDel: function (pointer) {
 			this.RoomID = this.RoomID+char
 			}
 		}
-		console.log("TCL: this.RoomID", this.RoomID)
 	},
 	update: function () {
 		if(this.RoomIDText != null){
@@ -99,9 +97,10 @@ keyDel: function (pointer) {
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
 			// this.currentQuiz = data.quiz
+			sessionStorage.setItem('roomId', this.RoomID)
+			sessionStorage.setItem('user', 2)
 			this.state.start('Quiz', true, false, data)
 		})
-        console.log("TCL: this.valid", this.valid)
 
 	},
 

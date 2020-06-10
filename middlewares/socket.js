@@ -7,14 +7,14 @@ const quiz = require('../public/assets/quiz.json')
 io.on('connection', async (socket) => {
 	console.log(socket.id)
 	socket.on('create-game', async (userAddress) => {
-		const user1 = { id: socket.id, userAddress }
+		const user1 = { user: 1, id: socket.id, userAddress, score: 3 }
 		const room = Math.floor(100000 + Math.random() * 900000)
 		socket.join(room)
 		await redis.lpush(`${room}`, JSON.stringify(user1))
 		socket.emit('game-created', room)
 	})
 	socket.on('join-game', async (user) => {
-		const user2 = { id: socket.id, userAddress: user.userAddress }
+		const user2 = { user: 2, id: socket.id, userAddress: user.userAddress, score: 3}
 		if ((await redis.llen(`${user.room}`)) == 1) {
 			socket.join(user.room)
 			await redis.lpush(`${user.room}`, JSON.stringify(user2))
@@ -26,16 +26,21 @@ io.on('connection', async (socket) => {
 			await redis.lpush(`${user.room}`, JSON.stringify(newQuiz))
 			// console.log('Log: q[qId]', q[qId])
 			delete q[qId].ans
+			const users = await redis.lrange(`${user.room}`, 1, -1)
+            console.log("TCL: users", users)
 			io.in(user.room).emit('user-joined', {
 				userAddress: user.userAddress,
 				quiz: q[qId],
 				qId,
+				users
 			})
 		}
 	})
 	socket.on('check-quiz', async (data) => {
+    	console.log("TCL: data", data)
 		let currentAns = quiz[data.id].ans
-		let qid = Math.floor(Math.random() * (index + 1))
+		let q = JSON.parse(await redis.lrange(`${data.room}`, 0, 0))
+		let qid = Math.floor(Math.random() * (q.length))
 		let newQuiz = quiz.filter((item) => item !== q[qid])
 		await redis.lpop(`${data.room}`)
 		await redis.lpush(`${data.room}`, JSON.stringify(newQuiz))

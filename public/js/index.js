@@ -18,4 +18,6 @@ function closeGame(room) {
 
 function leaveGame() {}
 
-function answerQuiz() {}
+function checkAnswer(data) {
+	socket.emit('check-quiz', data)
+}

@@ -1,12 +1,12 @@
 BasicGame.Create = function (game) {
 	this.mainButton = null
+	this.room = 000000
 }
 
 BasicGame.Create.prototype = {
 	create: function () {
 		console.log('InSide Create')
 		createGame('dennyMon')
-		this.room = 123457
 		socket.on('game-created', (roomid) => {
 			console.log('Log: roomid', roomid)
 			this.room = roomid
@@ -43,6 +43,8 @@ BasicGame.Create.prototype = {
 		}
 		socket.on('user-joined', (data) => {
 			console.log('Log: user-joined data', data)
+			sessionStorage.setItem('roomId', this.room)
+			sessionStorage.setItem('user', 1)
 			this.state.start('Quiz', true, false, data)
 		})
 	},
