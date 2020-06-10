@@ -1,5 +1,5 @@
 
 const LongNight = artifacts.require("LongNight");
-module.exports = function(_deployer) {
+module.exports = function(deployer) {
   deployer.deploy(LongNight);
 };
