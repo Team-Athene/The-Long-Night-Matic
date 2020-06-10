@@ -31,8 +31,8 @@ BasicGame.Create.prototype = {
 			1,
 			0
 		)
-		this.mainButton.width = 150
-		this.mainButton.height = 70
+		this.mainButton.width = window.innerWidth/9
+		this.mainButton.height = window.innerWidth/18
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -54,10 +54,10 @@ BasicGame.Create.prototype = {
 		this.roomId.destroy()
 	}
 	this.roomId = this.add.text(
-		window.innerWidth / 2.2,
-		window.innerHeight / 1.7,
+		window.innerWidth / 2.1,
+		window.innerHeight / 1.68,
 		`${this.room}`,
-		{ fill: 'yellow', align:'center', font: "20px Arial"}
+		{ fill: 'yellow', align:'center', font: "14px Arial"}
 	)
 	},
 

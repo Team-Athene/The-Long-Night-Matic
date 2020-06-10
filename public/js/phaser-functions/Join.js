@@ -26,8 +26,8 @@ BasicGame.Join.prototype = {
 			1,
 			0
 		)
-		this.clearButton.width = 100
-		this.clearButton.height = 40
+		this.clearButton.width = window.innerWidth/12
+		this.clearButton.height = window.innerWidth/24
 		this.startButton = this.add.button(
 			window.innerWidth / 1.6,
 			window.innerHeight / 1.2,
@@ -38,8 +38,8 @@ BasicGame.Join.prototype = {
 			1,
 			0
 		)
-		this.startButton.width = 150
-		this.startButton.height = 70
+		this.startButton.width = window.innerWidth/9
+		this.startButton.height = window.innerWidth/18
 		this.mainButton = this.add.button(
 			window.innerWidth / 3.5,
 			window.innerHeight / 1.2,
@@ -50,8 +50,8 @@ BasicGame.Join.prototype = {
 			1,
 			0
 		)
-		this.mainButton.width = 150
-		this.mainButton.height = 70
+		this.mainButton.width = window.innerWidth/9
+		this.mainButton.height = window.innerWidth/18
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -86,7 +86,7 @@ keyDel: function (pointer) {
 				window.innerWidth / 2.2,
 				window.innerHeight / 1.6,
 				`${this.RoomID}`,
-				{ fill: 'yellow' , align:'center', font: "18px Arial" }
+				{ fill: 'yellow' , align:'center', font: "14px Arial" }
 			)
 	
 	},
