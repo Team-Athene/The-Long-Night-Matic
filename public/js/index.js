@@ -9,7 +9,7 @@ contractAddress = contractABI.networks['5777'].address
 console.log('Log: contractAddress', contractAddress)
 const contractAbi = contractABI.abi
 console.log('Log: contractAbi', contractAbi)
-LN = new web3.eth.Contract(contractAbi, contractAddress)
+LN = new window.web3.eth.Contract(contractAbi, contractAddress)
 function createGame(userAddres) {
 	socket.emit('create-game', userAddres)
 }

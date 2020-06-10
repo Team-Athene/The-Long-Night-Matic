@@ -18,12 +18,12 @@ contract LongNight{
     mapping(uint=>Game)public long_night ;
     uint public id = 1;
     
-    function create_game(uint _bet_amount) public {
+    function create_game() public payable{
         long_night[id].first_user = msg.sender;
-        long_night[id].bet_amount = _bet_amount;
+        long_night[id].bet_amount = msg.value;
         id++;
     }
-    function join_game(uint _id) public {
+    function join_game(uint _id) public payable{
         long_night[_id].first_user = msg.sender;
     }
     function close_game(uint _id,address payable _winner,uint _star,uint _status) public {

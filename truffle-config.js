@@ -34,7 +34,7 @@ module.exports = {
 	 *
 	 * $ truffle test --network <network-name>
 	 */
-		contracts_build_directory: './public/build',
+	contracts_build_directory: './public/assets/build',
 
 	networks: {
 		// Useful for testing. The `development` name is special - truffle uses it by default
