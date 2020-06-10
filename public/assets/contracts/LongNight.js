@@ -1,4 +1,4 @@
-var contractABI = {
+const contractABI = {
   "contractName": "LongNight",
   "abi": [
     {
