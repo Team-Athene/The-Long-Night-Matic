@@ -21,7 +21,7 @@ function closeGame(room) {
 	socket.emit('close-quiz', { room })
 }
 
-function leaveGame() {}
+function claimAmount() {}
 
 function checkAnswer(data) {
 	socket.emit('check-quiz', data)

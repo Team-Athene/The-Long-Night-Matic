@@ -247,11 +247,23 @@ BasicGame.Quiz.prototype = {
 						0,
 						-window.innerHeight / 2.5
 					)
+					this.mainButton = this.add.button(
+						this.world.centerX - 75,
+						this.world.centerY + 60,
+						'mainMenu',
+						this.claim,
+						this,
+						2,
+						1,
+						0
+					)
+					this.mainButton.width = 150
+					this.mainButton.height = 70
 				} else {
 					this.tween = this.add
 					.tween(this.popup.scale)
 					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
-				this.status = this.add
+					this.status = this.add
 					.text(0, 0, 'Game Over!!\n You Lost the \nGame ', {
 						fill: 'gold',
 						align: 'center',
@@ -263,19 +275,19 @@ BasicGame.Quiz.prototype = {
 						0,
 						-window.innerHeight / 2.5
 					)
+					this.mainButton = this.add.button(
+						this.world.centerX - 75,
+						this.world.centerY + 60,
+						'mainMenu',
+						this.mainMenu,
+						this,
+						2,
+						1,
+						0
+					)
+					this.mainButton.width = 150
+					this.mainButton.height = 70
 				}
-				this.mainButton = this.add.button(
-					this.world.centerX - 75,
-					this.world.centerY + 60,
-					'mainMenu',
-					this.mainMenu,
-					this,
-					2,
-					1,
-					0
-				)
-				this.mainButton.width = 150
-				this.mainButton.height = 70
 			}
 		} else {
 			console.log("I am user 2");
@@ -370,6 +382,18 @@ BasicGame.Quiz.prototype = {
 						0,
 						-window.innerHeight / 2.5
 					)
+					this.mainButton = this.add.button(
+						this.world.centerX - 75,
+						this.world.centerY + 60,
+						'mainMenu',
+						this.claim,
+						this,
+						2,
+						1,
+						0
+					)
+					this.mainButton.width = 150
+					this.mainButton.height = 70
 				} else {
 					this.tween = this.add
 					.tween(this.popup.scale)
@@ -386,19 +410,19 @@ BasicGame.Quiz.prototype = {
 						0,
 						-window.innerHeight / 2.5
 					)
+					this.mainButton = this.add.button(
+						this.world.centerX - 75,
+						this.world.centerY + 60,
+						'mainMenu',
+						this.mainMenu,
+						this,
+						2,
+						1,
+						0
+					)
+					this.mainButton.width = 150
+					this.mainButton.height = 70
 				}
-				this.mainButton = this.add.button(
-					this.world.centerX - 75,
-					this.world.centerY + 60,
-					'mainMenu',
-					this.mainMenu,
-					this,
-					2,
-					1,
-					0
-				)
-				this.mainButton.width = 150
-				this.mainButton.height = 70
 			}
 		}
 
@@ -411,6 +435,10 @@ BasicGame.Quiz.prototype = {
 		this.clicked = 1
 		var data = {id: this.qId, room: this.roomID, ans: button.value}
 		checkAnswer(data)
+	},
+	claim: function() {
+		claimAmount()
+		this.state.start('MainMenu')
 	},
 	mainMenu: function (pointer) {
 		this.state.start('MainMenu')
