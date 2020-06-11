@@ -8,7 +8,8 @@ window.addEventListener('load', async () => {
 		window.web3 = new Web3(ethereum);
 		try {
 		  // Request account access if needed
-		  await ethereum.enable();
+		  let a = await ethereum.enable();
+    	  account = a[0]
 		  // Acccounts now exposed
 		  web3.eth.sendTransaction({/* ... */});
 		} catch (error) {
@@ -51,8 +52,8 @@ window.addEventListener('load', async () => {
 				console.log('This is an unknown network.')
 		}
 	// })
-	acc = await web3.eth.getAccounts()
-	account = acc[0]
+	// acc = await web3.eth.getAccounts()
+	// account = acc[0]
 	console.log('Log: account', account)
 	// const accountInterval = setInterval(function () {
 	// 	if (web3.eth.accounts[0] !== account) {
