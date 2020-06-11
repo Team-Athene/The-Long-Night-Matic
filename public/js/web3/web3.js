@@ -1,5 +1,6 @@
 let account
-let LN
+let LN, LongNight
+let netId
 window.addEventListener('load', async () => {
 	// Modern dapp browsers...
 	if (window.ethereum) {
@@ -27,36 +28,39 @@ window.addEventListener('load', async () => {
 	  }
 
 	// SPKJSON = require('../../../../build/SpecKart.json')
-
-	// web3.version.getNetwork((err, netId) => {
-	// 	switch (netId) {
-	// 		case '1':
-	// 			console.log('This is mainnet')
-	// 			break
-	// 		case '2':
-	// 			console.log('This is the deprecated Morden test network.')
-	// 			break
-	// 		case '3':
-	// 			console.log('This is the ropsten test network.')
-	// 			break
-	// 		case '4':
-	// 			console.log('This is the Rinkeby test network.')
-	// 			break
-	// 		case '42':
-	// 			console.log('This is the Kovan test network.')
-	// 			break
-	// 		default:
-	// 			console.log('This is an unknown network.')
-	// 	}
-	// })
-	account = web3.eth.accounts[0]
-	console.log('Log: account', account)
-	const accountInterval = setInterval(function () {
-		if (web3.eth.accounts[0] !== account) {
-			account = web3.eth.accounts[0]
-			location.reload(true)
+	netId = await web3.eth.net.getId()
+	// web3.eth.net.getId((err, netId) => {
+		console.log("TCL: netId", netId)
+		switch (netId) {
+			case '1':
+				console.log('This is mainnet')
+				break
+			case '2':
+				console.log('This is the deprecated Morden test network.')
+				break
+			case '3':
+				console.log('This is the ropsten test network.')
+				break
+			case '4':
+				console.log('This is the Rinkeby test network.')
+				break
+			case '42':
+				console.log('This is the Kovan test network.')
+				break
+			default:
+				console.log('This is an unknown network.')
 		}
-	}, 100)
+	// })
+	acc = await web3.eth.getAccounts()
+	account = acc[0]
+	console.log('Log: account', account)
+	// const accountInterval = setInterval(function () {
+	// 	if (web3.eth.accounts[0] !== account) {
+	// 		account = web3.eth.accounts[0]
+	// 		location.reload(true)
+	// 	}
+	// }, 100)
 	LN = new window.web3.eth.Contract(contractAbi, contractAddress)
-    console.log("TCL: LN", LN)
+	LongNight = LN.methods
+    console.log("TCL: LN", LN.methods)
 })
