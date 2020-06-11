@@ -2,11 +2,9 @@ const socket = io('http://localhost:5000')
 let account
 let LN, LongNight
 let netId
-// contractAddress = contractABI.networks['5777'].address
-// const contractAbi = contractABI.abi
+
 window.addEventListener('load', async () => {
 	if (typeof window.ethereum !== 'undefined') {
-		console.log('MetaMask is installed!')
 		window.web3 = new Web3(ethereum)
 		const accounts = await ethereum.enable()
 		ethereum.autoRefreshOnNetworkChange = false
@@ -19,17 +17,21 @@ window.addEventListener('load', async () => {
 	)
 })
 ethereum.on('accountsChanged', function (accounts) {
+	// Time to reload your interface with accounts[0]!
 	account = accounts[0]
 	console.log('Log: account', account)
-	// Time to reload your interface with accounts[0]!
 })
+
 createGame = async (userAddres) => {
 	try {
-		console.log('TCL: createGame -> LN.methods', LN.methods)
-		const create_res = await LN.methods.admin().call()
-		if (create_res.status) {
-			alert('greetings')
-		}
+		console.log('Log: createGame -> account', account)
+		// console.log('Log: createGame -> LN.methods', LN.methods)
+		const create_res = await LN.methods
+			.create_game()
+			.send({ from: account, gas: 8000000, value: 800000000 })
+		// const create_res = await LN.methods.id().call({ from: account })
+		console.log('Log: createGame -> create_res', create_res)
+
 		socket.emit('create-game', userAddres)
 	} catch (error) {
 		console.log('Log: createGame -> error', error)
