@@ -8,8 +8,14 @@ BasicGame.Boot.prototype = {
 
     preload: function () {
         this.load.image('preloaderBackground', '../../assets/images/GoT.jpg');
+        this.load.image('instBG', '../../assets/images/instBG.jpg');
         this.load.image('preloaderBar', '../assets/images/preloadr_bar.png');
+        this.load.image('scoreBG', '../../assets/images/scoreBG.jpg');
         this.load.image('popUp', '../assets/images/popUp.png');
+        this.load.image('inst', '../../assets/images/Inst.png');
+        this.load.image('fought', '../../assets/images/fought.png');
+        this.load.image('won', '../../assets/images/won.png');
+        this.load.image('lost', '../../assets/images/lost.png');
         this.load.image('question', '../assets/images/question.png');
         this.load.image('option', '../assets/images/option.png');
         this.load.image('lifeA', '../assets/images/life.png');

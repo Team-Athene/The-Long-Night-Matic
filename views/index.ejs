@@ -18,7 +18,8 @@
 	<script src="js/phaser-functions/Quiz.js"></script>
 	<script src="js/phaser-functions/Create.js"></script>
 	<script src="js/phaser-functions/Join.js"></script>
-	<script src="js/phaser-functions/Sample.js"></script>
+	<script src="js/phaser-functions/Score.js"></script>
+	<script src="js/phaser-functions/Instructions.js"></script>
 	<style>
 		body {
 			margin: 0;
@@ -39,7 +40,8 @@
 			game.state.add('Create', BasicGame.Create);
 			game.state.add('Quiz', BasicGame.Quiz);
 			game.state.add('Join', BasicGame.Join);
-			game.state.add('Sample', BasicGame.Sample);
+			game.state.add('Instructions', BasicGame.Instructions);
+			game.state.add('Score', BasicGame.Score);
 			game.state.start('Boot');
 		};
 	</script>

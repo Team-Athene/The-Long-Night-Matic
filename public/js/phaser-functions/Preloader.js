@@ -34,6 +34,12 @@ BasicGame.Preloader.prototype = {
 			265,
 			98
 		)
+		this.load.spritesheet(
+			'button3',
+			'assets/images/button3_sprite_sheet.png',
+			265,
+			98
+		)
 		this.music = this.add.audio('got')
 		this.music.autoplay = true
 		this.music.loop = true
