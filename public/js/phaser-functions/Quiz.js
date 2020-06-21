@@ -103,6 +103,8 @@ BasicGame.Quiz.prototype = {
 
 		for (var i = 0; i < this.walkerLife; i++) {
 			var LifeW = this.livesW.create(x - 100 + 50 * i, y, 'lifeW')
+			LifeW.width= window.innerWidth/24
+            LifeW.height= window.innerWidth/24
 			LifeW.anchor.setTo(0.5, 0.5)
 		}
 
@@ -112,22 +114,29 @@ BasicGame.Quiz.prototype = {
 
 		for (var i = 0; i < this.aryaLife; i++) {
 			var LifeA = this.livesA.create(p - 100 + 50 * i, q, 'lifeA')
+			LifeA.width= window.innerWidth/24
+            LifeA.height= window.innerWidth/24
 			LifeA.anchor.setTo(0.5, 0.5)
 		}
 
 		this.arya = this.add.sprite(
 			window.innerWidth / 2.3,
-			window.innerHeight / 2,
+			window.innerHeight-(window.innerWidth / 3.5),
 			'arya'
-		)
+        )
+        this.arya.width = window.innerWidth / 3.5
+        this.arya.height = window.innerWidth / 3.5
 		var walk = this.arya.animations.add('walk', [0, 1, 2, 4, 2, 1], 4, false)
 		this.arya.animations.play('walk', 1, true)
 
+
 		this.whiteWalker = this.add.sprite(
-			window.innerWidth / 5,
-			window.innerHeight / 2,
+			window.innerWidth / 4,
+			window.innerHeight-(window.innerWidth / 3.5),
 			'whiteWalker'
 		)
+        this.whiteWalker.width = window.innerWidth / 3
+        this.whiteWalker.height = window.innerWidth / 3.5
 		var walker = this.whiteWalker.animations.add(
 			'walker',
 			[0, 1, 2, 4, 2, 1],
@@ -140,7 +149,8 @@ BasicGame.Quiz.prototype = {
 	startGame: function (pointer) {
 		this.state.start('Game')
 	},
-	check: async function (value, quiz, qID) {		this.quesText.destroy()
+	check: async function (value, quiz, qID) {		
+		this.quesText.destroy()
 		this.question.destroy()
 		this.option1.destroy()
 		this.option2.destroy()
@@ -456,13 +466,9 @@ BasicGame.Quiz.prototype = {
 		this.question.width = window.innerWidth / 1.2
 		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER, 0, -35)
 		this.option1 = this.add.button(window.innerWidth / 5.5, 110, 'option')
-		this.option2 = this.add
-			.button(0, 0, 'option')
-			.alignTo(this.option1, Phaser.RIGHT_CENTER, 16)
+		this.option2 = this.add.button(window.innerWidth/2, 110, 'option')
 		this.option3 = this.add.button(window.innerWidth / 5.5, 165, 'option')
-		this.option4 = this.add
-			.button(0, 0, 'option')
-			.alignTo(this.option3, Phaser.RIGHT_CENTER, 16)
+		this.option4 = this.add.button(window.innerWidth/2, 165, 'option')
 		this.option1.width = window.innerWidth / 3.5
 		this.option2.width = window.innerWidth / 3.5
 		this.option3.width = window.innerWidth / 3.5
@@ -481,7 +487,7 @@ BasicGame.Quiz.prototype = {
 		this.option4.events.onInputDown.add(this.checkQuiz, this)
 		this.quesText = this.add
 			.text(0, 0, this.currentQues.question, {
-				font: '18px Arial',
+				font: '16px Arial',
 				fill: 'white',
 			})
 			.alignTo(this.question, Phaser.RIGHT_CENTER, -(this.question.width - 20))

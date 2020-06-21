@@ -20,8 +20,8 @@ BasicGame.MainMenu.prototype = {
 			1,
 			0
 		)
-		this.playButton.width = 320
-		this.playButton.height = 150
+		this.playButton.width = window.innerWidth/4
+		this.playButton.height = window.innerWidth/8
 
 		this.joinButton = this.add.button(
 			window.innerWidth / 1.45,
@@ -33,8 +33,8 @@ BasicGame.MainMenu.prototype = {
 			1,
 			0
 		)
-		this.joinButton.width = 320
-		this.joinButton.height = 150
+		this.joinButton.width = window.innerWidth/4
+		this.joinButton.height = window.innerWidth/8
 
 		this.statButton = this.add.button(
 			window.innerWidth / 1.45,
@@ -46,8 +46,8 @@ BasicGame.MainMenu.prototype = {
 			1,
 			0
 		)
-		this.statButton.width = 320
-		this.statButton.height = 150
+		this.statButton.width = window.innerWidth/4
+		this.statButton.height = window.innerWidth/8
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -68,6 +68,6 @@ BasicGame.MainMenu.prototype = {
 		this.state.start('Join')
 	},
 	myKingdom: function (pointer) {
-		this.state.start('Login')
+		this.state.start('Sample')
 	},
 }
