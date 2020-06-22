@@ -8,7 +8,7 @@
         "ans": "d"
     },
     {
-        "question": "Who was responsible for the creation of the Night King?",
+        "question": "Who was responsible for the creation of Night King?",
         "a": "The Lord of Light",
         "b": "The Children of the Forest",
         "c": "The Drowned God",
@@ -16,7 +16,7 @@
         "ans": "b"
     },
     {
-        "question": "What was Hodor called before he got his tragic door-holding nickname?",
+        "question": "What was Hodor's name before his tragic nickname?",
         "a": "Wylis",
         "b": "Horys",
         "c": "Myrys",
@@ -40,7 +40,7 @@
         "ans": "b"
     },
     {
-        "question": "Iwan Rheon(Ramsay Bolton) was almost cast as which character?",
+        "question": "Iwan Rheon(Ramsay Bolton) was almost cast as?",
         "a": "Jon Snow",
         "b": "Gendry",
         "c": "Podrick Payne",
@@ -48,7 +48,7 @@
         "ans": "a"
     },
     {
-        "question": "Who said:'I don’t plan on knitting by the fire while men fight for me'?",
+        "question": "Who said:'I don’t plan on knitting by fire while men fight for me'?",
         "a": "Lyanna Mormont",
         "b": "Sansa Stark",
         "c": "Brienne of Tarth",
@@ -104,7 +104,7 @@
         "ans": "a"
     },
     {
-        "question": "Which relative did Euron Greyjoy murder to take the Iron Islands?",
+        "question": "Which relative did Euron Greyjoy murder to take Iron Islands?",
         "a": "His brother",
         "b": "His uncle",
         "c": "His nephew",
@@ -112,7 +112,7 @@
         "ans": "a"
     },
     {
-        "question": "What were the first words King Robert said to Ned Stark in episode 1 of season 1?",
+        "question": "What were the first words King Robert to Ned Stark in Ep1 of S1?",
         "a": "You’ve got fat.",
         "b": "You’ve not changed.",
         "c": "You look old.",
@@ -120,7 +120,7 @@
         "ans": "a"
     },
     {
-        "question": "The actor who played Brother Ray also played which antique-loving TV scoundrel?",
+        "question": "The actor who played Brother Ray also played which TV scoundrel?",
         "a": "David Dickinson",
         "b": "Del Boy Trotter",
         "c": "Rodney Trotter",
@@ -144,7 +144,7 @@
         "ans": "d"
     },
     {
-        "question": "The smaller denominations of the Gold Dragon coin are the copper penny and the ___?",
+        "question": "The smaller denoms of the Gold Dragon coin are copper penny and _?",
         "a": "Silver stallion",
         "b": "Golden goose",
         "c": "Silver stag",
@@ -152,7 +152,7 @@
         "ans": "c"
     },
     {
-        "question": "Whose last words were: 'Give me something for the pain, and let me die'?",
+        "question": "Whose last words were:'Give me something for the pain, and let me die'?",
         "a": "Stannis Baratheon",
         "b": "Hodor",
         "c": "Robert Baratheon",
