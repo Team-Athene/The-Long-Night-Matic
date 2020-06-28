@@ -1,5 +1,19 @@
-Steps:
+## The Long Night 
+A decentralized platform enables the bettors to use Ether and betting can be made all over the world within the blockchain platform. Since our app is using GSN contracts there won't be any gas fee charged (like in the ethereum platform) from the players. The payouts are done by the smart contracts so more liquidity will be there
+In our game,
 
+The admin, himself, is responsible for paying the gas cost of the players.
+The players don’t need to pay for the gas for any transaction here.
+## Why Matic?
+
+# High Scalability
+# Highly fast transactions
+# Awesome user experience.
+
+
+Video Url: https://www.youtube.com/watch?v=cu4QTft5Jbo
+
+## Steps:
 1 . npm install
 2 . npx gsn deploy --network https://testnetv3.matic.network --mnemonic ./wallet.txt --from 0x67Cf1dc639746Ca6d0436AA44EF53f9ec5aBd5a8
 
@@ -17,3 +31,7 @@ Deployed GSN to network: https://testnetv3.matic.network
 5 . npx gsn relayer-register --network https://testnetv3.matic.network --mnemonic ./wallet.txt --from 0x67Cf1dc639746Ca6d0436AA44EF53f9ec5aBd5a8
 
 6 . truffle migrate --reset --network matic
+
+7 . npm run pack
+
+8 . npm start
