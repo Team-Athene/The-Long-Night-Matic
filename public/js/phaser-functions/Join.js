@@ -1,9 +1,9 @@
 BasicGame.Join = function (game) {
 	this.mainButton = null
 	this.startButton = null
-	this.RoomID = "Start Typing"
+	this.RoomID = 'Start Typing'
 	this.RoomIDText = null
-	this.currentQues = null;
+	this.currentQues = null
 }
 
 BasicGame.Join.prototype = {
@@ -13,8 +13,8 @@ BasicGame.Join.prototype = {
 		this.background = this.add.sprite(0, 0, 'joinBG')
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
-		
-		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);
+
+		this.input.keyboard.addCallbacks(this, null, null, this.keyPress)
 
 		this.clearButton = this.add.button(
 			window.innerWidth / 2.1,
@@ -26,8 +26,8 @@ BasicGame.Join.prototype = {
 			1,
 			0
 		)
-		this.clearButton.width = window.innerWidth/12
-		this.clearButton.height = window.innerWidth/24
+		this.clearButton.width = window.innerWidth / 12
+		this.clearButton.height = window.innerWidth / 24
 		this.startButton = this.add.button(
 			window.innerWidth / 1.6,
 			window.innerHeight / 1.2,
@@ -38,8 +38,8 @@ BasicGame.Join.prototype = {
 			1,
 			0
 		)
-		this.startButton.width = window.innerWidth/9
-		this.startButton.height = window.innerWidth/18
+		this.startButton.width = window.innerWidth / 9
+		this.startButton.height = window.innerWidth / 18
 		this.mainButton = this.add.button(
 			window.innerWidth / 3.5,
 			window.innerHeight / 1.2,
@@ -50,8 +50,8 @@ BasicGame.Join.prototype = {
 			1,
 			0
 		)
-		this.mainButton.width = window.innerWidth/9
-		this.mainButton.height = window.innerWidth/18
+		this.mainButton.width = window.innerWidth / 9
+		this.mainButton.height = window.innerWidth / 18
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -61,47 +61,47 @@ BasicGame.Join.prototype = {
 			}, this)
 		}
 	},
-keyDel: function (pointer) {
-	this.keyPress('DEL')
-
-},
-	keyPress: function(char) {
-		if(char=="DEL"){
-			if(this.RoomID != "Start Typing"){
-				this.RoomID = this.RoomID.slice(0, -1);	
+	keyDel: function (pointer) {
+		this.keyPress('DEL')
+	},
+	keyPress: function (char) {
+		if (char == 'DEL') {
+			if (this.RoomID != 'Start Typing') {
+				this.RoomID = this.RoomID.slice(0, -1)
 			}
 		} else {
-			if(this.RoomID == "Start Typing"){
+			if (this.RoomID == 'Start Typing') {
 				this.RoomID = char
 			} else {
-			this.RoomID = this.RoomID+char
+				this.RoomID = this.RoomID + char
 			}
 		}
 	},
 	update: function () {
-		if(this.RoomIDText != null){
+		if (this.RoomIDText != null) {
 			this.RoomIDText.destroy()
 		}
 		this.RoomIDText = this.add.text(
-				window.innerWidth / 2.2,
-				window.innerHeight / 1.6,
-				`${this.RoomID}`,
-				{ fill: 'yellow' , align:'center', font: "14px Arial" }
-			)
-	
+			window.innerWidth / 2.2,
+			window.innerHeight / 1.6,
+			`${this.RoomID}`,
+			{ fill: 'yellow', align: 'center', font: '14px Arial' }
+		)
 	},
 
 	startGame: function (pointer) {
 		// let k = prompt('ENTER ROOM NUMBER ?')
 		joinGame(this.RoomID, 'mekhamol')
-		socket.on('user-joined', (data) => {
+		socket.on('user-joined', async (data) => {
 			console.log('Log: user-joined data', data)
 			// this.currentQuiz = data.quiz
 			sessionStorage.setItem('roomId', this.RoomID)
 			sessionStorage.setItem('user', 2)
 			this.state.start('Quiz', true, false, data)
+			const join_res = await LN.methods.join_game(data.GameId).send({
+				from: account,
+			})
 		})
-
 	},
 
 	mainMenu: function (pointer) {

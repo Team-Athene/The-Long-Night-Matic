@@ -23,10 +23,10 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-const HDWalletProvider = require('truffle-hdwallet-provider');
-const infuraKey = '0e9a3e7c18094e3a87e13cb1991e4b57';
-const mnemonic = "domain hip magic total cart frozen umbrella next matrix march measure cousin";
-
+const HDWalletProvider = require('truffle-hdwallet-provider')
+const infuraKey = '0e9a3e7c18094e3a87e13cb1991e4b57'
+const mnemonic =
+	'brass bar head behind predict pass final staff twist state purchase next'
 
 module.exports = {
 	/**
@@ -62,8 +62,17 @@ module.exports = {
 			gas: 8000000, // Ropsten has a lower block limit than mainnet
 			confirmations: 1, // # of confs to wait between deployments. (default: 0)
 			timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
-			skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
-		}
+			skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+		},
+		matic: {
+			provider: () =>
+				new HDWalletProvider(mnemonic, 'https://testnetv3.matic.network'),
+			network_id: 15001,
+			gasPrice: '0x0',
+			confirmations: 2,
+			timeoutBlocks: 200,
+			skipDryRun: true,
+		},
 		// Another network with more advanced options...
 		// advanced: {
 		// port: 8777,             // Custom port

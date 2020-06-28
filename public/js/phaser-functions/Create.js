@@ -31,8 +31,8 @@ BasicGame.Create.prototype = {
 			1,
 			0
 		)
-		this.mainButton.width = window.innerWidth/9
-		this.mainButton.height = window.innerWidth/18
+		this.mainButton.width = window.innerWidth / 9
+		this.mainButton.height = window.innerWidth / 18
 		this.music = this.add.audio('got')
 		this.music.loop = true
 		this.music.autoplay = true
@@ -41,24 +41,23 @@ BasicGame.Create.prototype = {
 				this.sound.context.resume()
 			}, this)
 		}
-		socket.on('user-joined', (data) => {
-			console.log('Log: user-joined data', data)
-			sessionStorage.setItem('roomId', this.room)
-			sessionStorage.setItem('user', 1)
-			this.state.start('Quiz', true, false, data)
+		socket.on('game-created', (dta) => {
+			console.log('Log: dta', dta)
+			this.room = dta.room
+			this.GameId = dta.GameId
 		})
 	},
 
-	update: function () {		
-		if(this.roomId != null){
-		this.roomId.destroy()
-	}
-	this.roomId = this.add.text(
-		window.innerWidth / 2.1,
-		window.innerHeight / 1.68,
-		`${this.room}`,
-		{ fill: 'yellow', align:'center', font: "14px Arial"}
-	)
+	update: function () {
+		if (this.roomId != null) {
+			this.roomId.destroy()
+		}
+		this.roomId = this.add.text(
+			window.innerWidth / 2.1,
+			window.innerHeight / 1.68,
+			`${this.room}`,
+			{ fill: 'yellow', align: 'center', font: '14px Arial' }
+		)
 	},
 
 	mainMenu: function (pointer) {

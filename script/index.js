@@ -21,7 +21,7 @@ window.addEventListener('load', async () => {
 			stakeManagerAddress: config.stakeManager,
 			methodSuffix: '_v4',
 			jsonStringifyRequest: true,
-			chainId: 5777,
+			chainId: 15001,
 			paymasterAddress: config.paymaster,
 			gasPriceFactorPercent: 70,
 			relayLookupWindowBlocks: 1e5,
@@ -46,10 +46,13 @@ window.createGame = async (userAddres) => {
 			gas: 6000000,
 			value: 1000000000,
 		})
+		if (create_res.status) {
+			window.socket.emit('create-game', {
+				userAddres,
+				GameId: create_res.events.GameId.returnValues.id,
+			})
+		}
 		// const create_res = await LN.methods.id().call({ from: account })
-		console.log('Log: createGame -> create_res', create_res)
-
-		window.socket.emit('create-game', userAddres)
 	} catch (error) {
 		console.log('Log: createGame -> error', error)
 	}
@@ -82,7 +85,12 @@ window.closeGame = (room) => {
 //    }
 // })
 
-window.claimAmount = () => {}
+window.claimAmount = async (data) => {
+	console.log('Log: window.claimAmount -> data', data)
+	const close_game_res = await LN.methods.close_game().send({
+		from: account,
+	})
+}
 
 window.checkAnswer = (data) => {
 	window.socket.emit('check-quiz', data)
