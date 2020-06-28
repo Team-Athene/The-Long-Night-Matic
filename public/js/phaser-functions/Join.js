@@ -8,6 +8,8 @@ BasicGame.Join = function (game) {
 
 BasicGame.Join.prototype = {
 	create: function () {
+		console.log('InSide Join')
+
 		this.background = this.add.sprite(0, 0, 'joinBG')
 		this.background.width = window.innerWidth
 		this.background.height = window.innerHeight
@@ -88,9 +90,11 @@ BasicGame.Join.prototype = {
 	},
 
 	startGame: function (pointer) {
-		joinGame(this.RoomID, 'second')
+		// let k = prompt('ENTER ROOM NUMBER ?')
+		joinGame(this.RoomID, 'mekhamol')
 		socket.on('user-joined', async (data) => {
 			console.log('Log: user-joined data', data)
+			// this.currentQuiz = data.quiz
 			sessionStorage.setItem('roomId', this.RoomID)
 			sessionStorage.setItem('user', 2)
 			this.state.start('Quiz', true, false, data)
