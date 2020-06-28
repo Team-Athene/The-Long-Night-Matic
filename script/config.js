@@ -1,9 +1,12 @@
-const relayHub = require('../build/gsn/RelayHub.json').address
+const relayHub = '0xD216153c06E857cD7f72665E0aF1d7D82172F494'
 const stakeManager = require('../build/gsn/StakeManager.json').address
 const paymaster = require('../build/gsn/Paymaster.json').address
+const contractAddress = require('../public/assets/build/LongNight.json')
+	.networks[15001].address
+
 module.exports = {
 	config: {
-		contract: '0xb214D868d7DBFbAa56e179432c8B14B00b1c2ec9',
+		contract: contractAddress,
 		relayHub,
 		stakeManager,
 		paymaster,
