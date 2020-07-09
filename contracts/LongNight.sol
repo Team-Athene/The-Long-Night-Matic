@@ -1,16 +1,15 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.2;
 
-// import "@opengsn/gsn/contracts/BaseRelayRecipient.sol";
-// import "@opengsn/gsn/contracts/interfaces/IKnowForwarderAddress.sol";
-import "@openzeppelin/contracts-ethereum-package/contracts/GSN/GSNRecipient.sol";
+import "@opengsn/gsn/contracts/BaseRelayRecipient.sol";
+import "@opengsn/gsn/contracts/interfaces/IKnowForwarderAddress.sol";
 
-contract LongNight is GSNRecipient {
+contract LongNight is BaseRelayRecipient, IKnowForwarderAddress {
     address payable public admin;
 
-    constructor() public {
+    constructor(address _forwarder) public {
         admin = _msgSender();
-        //trustedForwarder = _forwarder;
+        trustedForwarder = _forwarder;
     }
 
     struct Game {
@@ -20,6 +19,7 @@ contract LongNight is GSNRecipient {
         address payable winner;
         uint256 star;
     }
+
     event GameId(uint256 id);
     mapping(uint256 => Game) public long_night;
     uint256 public id = 1;
@@ -65,24 +65,17 @@ contract LongNight is GSNRecipient {
         }
     }
 
-    function acceptRelayedCall(
-    address relay,
-    address from,
-    bytes calldata encodedFunction,
-    uint256 transactionFee,
-    uint256 gasPrice,
-    uint256 gasLimit,
-    uint256 nonce,
-    bytes calldata approvalData,
-    uint256 maxPossibleCharge
-  ) external view returns (uint256, bytes memory) {
+    function versionRecipient()
+        external
+        virtual
+        override
+        view
+        returns (string memory)
+    {
+        return "1.0";
+    }
 
-    // approve ALL calls!
-    return _approveRelayedCall();
-
-  }
-function _preRelayedCall(bytes memory context) internal  returns (bytes32) {
-}
-function _postRelayedCall(bytes memory context, bool, uint256 actualCharge, bytes32) internal {
-}
+    function getTrustedForwarder() public override view returns (address) {
+        return trustedForwarder;
+    }
 }

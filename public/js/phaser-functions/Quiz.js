@@ -20,22 +20,21 @@ BasicGame.Quiz = function (game) {
 
 	this.aryaLife = 0
 	this.walkerLife = 0
-	this.winnerLife = 0
 }
 BasicGame.Quiz.prototype = {
-	init: function (data) {
+	init: function(data) { 
 		this.currentQues = data.quiz
 		this.qId = data.qId
 		this.roomID = sessionStorage.getItem('roomId')
 		this.user = sessionStorage.getItem('user')
 		var users = []
-		console.log('TCL: users', users)
+        console.log("TCL: users", users)
 		for (const user of data.users) {
 			users.push(JSON.parse(user))
 		}
-		if (this.user == 1) {
+		if(this.user == 1) {
 			//I am Arya
-			if (users[0].user == this.user) {
+			if(users[0].user == this.user) {
 				this.aryaLife = users[0].score
 				this.walkerLife = users[1].score
 			} else {
@@ -44,7 +43,7 @@ BasicGame.Quiz.prototype = {
 			}
 		} else {
 			//I am White Walker
-			if (users[0].user == this.user) {
+			if(users[0].user == this.user) {
 				this.walkerLife = users[0].score
 				this.aryaLife = users[1].score
 			} else {
@@ -52,7 +51,8 @@ BasicGame.Quiz.prototype = {
 				this.aryaLife = users[0].score
 			}
 		}
-	},
+		
+	  },
 	create: function () {
 		this.background = this.add.sprite(0, 0, 'quizBG')
 		this.background.width = window.innerWidth
@@ -78,7 +78,7 @@ BasicGame.Quiz.prototype = {
 		if (this.timeInSeconds == 0) {
 			this.timeText.text = 'Now'
 			await this.time.events.remove(this.timer)
-			console.log('TCL: this.now', this.user)
+            console.log("TCL: this.now", this.user)
 			this.gameQuiz()
 		}
 	},
@@ -103,8 +103,8 @@ BasicGame.Quiz.prototype = {
 
 		for (var i = 0; i < this.walkerLife; i++) {
 			var LifeW = this.livesW.create(x - 100 + 50 * i, y, 'lifeW')
-			LifeW.width = window.innerWidth / 24
-			LifeW.height = window.innerWidth / 24
+			LifeW.width= window.innerWidth/24
+            LifeW.height= window.innerWidth/24
 			LifeW.anchor.setTo(0.5, 0.5)
 		}
 
@@ -114,28 +114,29 @@ BasicGame.Quiz.prototype = {
 
 		for (var i = 0; i < this.aryaLife; i++) {
 			var LifeA = this.livesA.create(p - 100 + 50 * i, q, 'lifeA')
-			LifeA.width = window.innerWidth / 24
-			LifeA.height = window.innerWidth / 24
+			LifeA.width= window.innerWidth/24
+            LifeA.height= window.innerWidth/24
 			LifeA.anchor.setTo(0.5, 0.5)
 		}
 
 		this.arya = this.add.sprite(
 			window.innerWidth / 2.3,
-			window.innerHeight - window.innerWidth / 3.5,
+			window.innerHeight-(window.innerWidth / 3.5),
 			'arya'
-		)
-		this.arya.width = window.innerWidth / 3.5
-		this.arya.height = window.innerWidth / 3.5
+        )
+        this.arya.width = window.innerWidth / 3.5
+        this.arya.height = window.innerWidth / 3.5
 		var walk = this.arya.animations.add('walk', [0, 1, 2, 4, 2, 1], 4, false)
 		this.arya.animations.play('walk', 1, true)
 
+
 		this.whiteWalker = this.add.sprite(
 			window.innerWidth / 4,
-			window.innerHeight - window.innerWidth / 3.5,
+			window.innerHeight-(window.innerWidth / 3.5),
 			'whiteWalker'
 		)
-		this.whiteWalker.width = window.innerWidth / 3
-		this.whiteWalker.height = window.innerWidth / 3.5
+        this.whiteWalker.width = window.innerWidth / 3
+        this.whiteWalker.height = window.innerWidth / 3.5
 		var walker = this.whiteWalker.animations.add(
 			'walker',
 			[0, 1, 2, 4, 2, 1],
@@ -148,7 +149,7 @@ BasicGame.Quiz.prototype = {
 	startGame: function (pointer) {
 		this.state.start('Game')
 	},
-	check: async function (value, quiz, qID) {
+	check: async function (value, quiz, qID) {		
 		this.quesText.destroy()
 		this.question.destroy()
 		this.option1.destroy()
@@ -162,20 +163,20 @@ BasicGame.Quiz.prototype = {
 		this.livesW.destroy()
 		this.livesA.destroy()
 		this.arya.destroy()
-		this.whiteWalker.destroy()
+		this.whiteWalker.destroy()	
 
-		if (this.user == 1) {
+		if(this.user == 1) {
 			var pop = null
-			if (value == true) {
-				if (this.clicked == 1) {
-					this.walkerLife--
+			if( value == true){
+				if(this.clicked==1) {
+					this.walkerLife--;
 					pop = true
 				} else {
 					this.aryaLife--
 					pop = false
 				}
 			} else {
-				if (this.clicked == 1) {
+				if(this.clicked==1) {
 					this.aryaLife--
 					pop = false
 				} else {
@@ -196,33 +197,33 @@ BasicGame.Quiz.prototype = {
 				this.tween = this.add
 					.tween(this.popup.scale)
 					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
-				if (pop == true) {
-					this.status = this.add
-						.text(0, 0, 'You Won\n Your next game\n starts in ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
-				} else {
-					this.status = this.add
-						.text(0, 0, 'You Lost\n Your next game\n starts in ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
-				}
+					if (pop == true) {
+						this.status = this.add
+							.text(0, 0, 'You Won\n Your next game\n starts in ', {
+								fill: 'gold',
+								align: 'center',
+								font: '28px Arial',
+							})
+							.alignIn(
+								this.world.bounds,
+								Phaser.TOP_CENTER,
+								0,
+								-window.innerHeight / 2.5
+							)
+					} else {
+						this.status = this.add
+							.text(0, 0, 'You Lost\n Your next game\n starts in ', {
+								fill: 'gold',
+								align: 'center',
+								font: '28px Arial',
+							})
+							.alignIn(
+								this.world.bounds,
+								Phaser.TOP_CENTER,
+								0,
+								-window.innerHeight / 2.5
+							)
+					}
 				this.timeInSeconds = 4
 				this.timeText = this.add.text(
 					this.world.centerX,
@@ -240,23 +241,22 @@ BasicGame.Quiz.prototype = {
 				)
 				this.popup.alpha = 0.8
 				this.popup.anchor.set(0.5)
-				if (this.aryaLife > 0 && this.walkerLife == 0) {
+				if (this.aryaLife>0 && this.walkerLife==0) {
 					this.tween = this.add
-						.tween(this.popup.scale)
-						.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
-					this.status = this.add
-						.text(0, 0, 'Game Over!!\n You Won the \nGame ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
-					this.winnerLife = this.aryaLife
+					.tween(this.popup.scale)
+					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
+				this.status = this.add
+					.text(0, 0, 'Game Over!!\n You Won the \nGame ', {
+						fill: 'gold',
+						align: 'center',
+						font: '28px Arial',
+					})
+					.alignIn(
+						this.world.bounds,
+						Phaser.TOP_CENTER,
+						0,
+						-window.innerHeight / 2.5
+					)
 					this.mainButton = this.add.button(
 						this.world.centerX - 75,
 						this.world.centerY + 60,
@@ -271,20 +271,20 @@ BasicGame.Quiz.prototype = {
 					this.mainButton.height = 70
 				} else {
 					this.tween = this.add
-						.tween(this.popup.scale)
-						.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
+					.tween(this.popup.scale)
+					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
 					this.status = this.add
-						.text(0, 0, 'Game Over!!\n You Lost the \nGame ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
+					.text(0, 0, 'Game Over!!\n You Lost the \nGame ', {
+						fill: 'gold',
+						align: 'center',
+						font: '28px Arial',
+					})
+					.alignIn(
+						this.world.bounds,
+						Phaser.TOP_CENTER,
+						0,
+						-window.innerHeight / 2.5
+					)
 					this.mainButton = this.add.button(
 						this.world.centerX - 75,
 						this.world.centerY + 60,
@@ -300,19 +300,19 @@ BasicGame.Quiz.prototype = {
 				}
 			}
 		} else {
-			console.log('I am user 2')
+			console.log("I am user 2");
 			var pop = null
-			if (value == true) {
-				if (this.clicked == 1) {
+			if( value == true){
+				if(this.clicked==1) {
 					this.aryaLife--
 					pop = true
 				} else {
-					this.walkerLife--
+					this.walkerLife--;
 					pop = false
 				}
 			} else {
-				if (this.clicked == 1) {
-					this.walkerLife--
+				if(this.clicked==1) {
+					this.walkerLife--;
 					pop = false
 				} else {
 					this.aryaLife--
@@ -332,33 +332,33 @@ BasicGame.Quiz.prototype = {
 				this.tween = this.add
 					.tween(this.popup.scale)
 					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
-				if (pop == true) {
-					this.status = this.add
-						.text(0, 0, 'You Won\n Your next game\n starts in ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
-				} else {
-					this.status = this.add
-						.text(0, 0, 'You Lost\n Your next game\n starts in ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
-				}
+					if (pop == true) {
+						this.status = this.add
+							.text(0, 0, 'You Won\n Your next game\n starts in ', {
+								fill: 'gold',
+								align: 'center',
+								font: '28px Arial',
+							})
+							.alignIn(
+								this.world.bounds,
+								Phaser.TOP_CENTER,
+								0,
+								-window.innerHeight / 2.5
+							)
+					} else {
+						this.status = this.add
+							.text(0, 0, 'You Lost\n Your next game\n starts in ', {
+								fill: 'gold',
+								align: 'center',
+								font: '28px Arial',
+							})
+							.alignIn(
+								this.world.bounds,
+								Phaser.TOP_CENTER,
+								0,
+								-window.innerHeight / 2.5
+							)
+					}
 				this.timeInSeconds = 4
 				this.timeText = this.add.text(
 					this.world.centerX,
@@ -376,23 +376,22 @@ BasicGame.Quiz.prototype = {
 				)
 				this.popup.alpha = 0.8
 				this.popup.anchor.set(0.5)
-				if (this.aryaLife == 0 && this.walkerLife > 0) {
+				if (this.aryaLife==0 && this.walkerLife>0) {
 					this.tween = this.add
-						.tween(this.popup.scale)
-						.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
-					this.status = this.add
-						.text(0, 0, 'Game Over!!\n You Won the \nGame ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
-					this.winnerLife = this.walkerLife
+					.tween(this.popup.scale)
+					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
+				this.status = this.add
+					.text(0, 0, 'Game Over!!\n You Won the \nGame ', {
+						fill: 'gold',
+						align: 'center',
+						font: '28px Arial',
+					})
+					.alignIn(
+						this.world.bounds,
+						Phaser.TOP_CENTER,
+						0,
+						-window.innerHeight / 2.5
+					)
 					this.mainButton = this.add.button(
 						this.world.centerX - 75,
 						this.world.centerY + 60,
@@ -407,20 +406,20 @@ BasicGame.Quiz.prototype = {
 					this.mainButton.height = 70
 				} else {
 					this.tween = this.add
-						.tween(this.popup.scale)
-						.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
-					this.status = this.add
-						.text(0, 0, 'Game Over!!\n You Lost the \nGame ', {
-							fill: 'gold',
-							align: 'center',
-							font: '28px Arial',
-						})
-						.alignIn(
-							this.world.bounds,
-							Phaser.TOP_CENTER,
-							0,
-							-window.innerHeight / 2.5
-						)
+					.tween(this.popup.scale)
+					.to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true)
+				this.status = this.add
+					.text(0, 0, 'Game Over!!\n You Lost the \nGame ', {
+						fill: 'gold',
+						align: 'center',
+						font: '28px Arial',
+					})
+					.alignIn(
+						this.world.bounds,
+						Phaser.TOP_CENTER,
+						0,
+						-window.innerHeight / 2.5
+					)
 					this.mainButton = this.add.button(
 						this.world.centerX - 75,
 						this.world.centerY + 60,
@@ -444,11 +443,11 @@ BasicGame.Quiz.prototype = {
 	},
 	checkQuiz: async function (button) {
 		this.clicked = 1
-		var data = { id: this.qId, room: this.roomID, ans: button.value }
+		var data = {id: this.qId, room: this.roomID, ans: button.value}
 		checkAnswer(data)
 	},
-	claim: function () {
-		claimAmount({ star: this.winnerLife })
+	claim: function() {
+		claimAmount()
 		this.state.start('MainMenu')
 	},
 	mainMenu: function (pointer) {
@@ -467,23 +466,23 @@ BasicGame.Quiz.prototype = {
 		this.question.width = window.innerWidth / 1.2
 		this.question.alignIn(this.world.bounds, Phaser.TOP_CENTER, 0, -35)
 		this.option1 = this.add.button(window.innerWidth / 5.5, 110, 'option')
-		this.option2 = this.add.button(window.innerWidth / 2, 110, 'option')
+		this.option2 = this.add.button(window.innerWidth/2, 110, 'option')
 		this.option3 = this.add.button(window.innerWidth / 5.5, 165, 'option')
-		this.option4 = this.add.button(window.innerWidth / 2, 165, 'option')
+		this.option4 = this.add.button(window.innerWidth/2, 165, 'option')
 		this.option1.width = window.innerWidth / 3.5
 		this.option2.width = window.innerWidth / 3.5
 		this.option3.width = window.innerWidth / 3.5
 		this.option4.width = window.innerWidth / 3.5
-		this.option1.value = 'a'
+		this.option1.value = "a"
 		this.option1.inputEnabled = true
 		this.option1.events.onInputDown.add(this.checkQuiz, this)
-		this.option2.value = 'b'
+		this.option2.value = "b"
 		this.option2.inputEnabled = true
 		this.option2.events.onInputDown.add(this.checkQuiz, this)
-		this.option3.value = 'c'
+		this.option3.value = "c"
 		this.option3.inputEnabled = true
 		this.option3.events.onInputDown.add(this.checkQuiz, this)
-		this.option4.value = 'd'
+		this.option4.value = "d"
 		this.option4.inputEnabled = true
 		this.option4.events.onInputDown.add(this.checkQuiz, this)
 		this.quesText = this.add
@@ -504,23 +503,25 @@ BasicGame.Quiz.prototype = {
 		this.option4Text = this.add
 			.text(0, 0, this.currentQues.d, { font: '16px Arial', fill: 'yellow' })
 			.alignTo(this.option4, Phaser.RIGHT_CENTER, -(this.option4.width - 20))
-		socket.on('ans-and-next-quiz', (data) => {
-			var val = 0
-			if (this.dat.length == 0) {
-				this.dat.push(data.qid)
-				this.check(data.currentAns, data.quiz, data.qid)
-			} else {
-				for (i = 0; i < this.dat.length; i++) {
-					if (data.qid == this.dat[i]) {
-						val = 1
-						break
+			console.log("I REACHED NEAR SOCKET");
+				socket.on('ans-and-next-quiz', (data) => {
+					var val = 0
+					if(this.dat.length == 0){
+						this.dat.push(data.qid)
+						this.check(data.currentAns, data.quiz, data.qid)
+					} else {
+						for(i=0; i<this.dat.length; i++) {
+							if(data.qid == this.dat[i]) {
+								val = 1
+								break
+							}
+						}
+						if(val == 0) {
+							this.dat.push(data.qid)
+							this.check(data.currentAns, data.quiz, data.qid)
+
+						}
 					}
-				}
-				if (val == 0) {
-					this.dat.push(data.qid)
-					this.check(data.currentAns, data.quiz, data.qid)
-				}
-			}
-		})
+				})
 	},
 }
