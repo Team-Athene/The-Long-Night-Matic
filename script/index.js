@@ -3,7 +3,9 @@ let account
 let LN, LongNight
 let netId
 import Web3 from 'web3'
-import { config } from './config'
+import {
+	config
+} from './config'
 const Gsn = require('@opengsn/gsn/dist/src/relayclient/')
 const contractABI = require('../public/assets/build/LongNight.json')
 const configureGSN = require('@opengsn/gsn/dist/src/relayclient/GSNConfigurator')
@@ -21,7 +23,7 @@ window.addEventListener('load', async () => {
 			stakeManagerAddress: config.stakeManager,
 			methodSuffix: '_v4',
 			jsonStringifyRequest: true,
-			chainId: 15001,
+			chainId: 80001,
 			paymasterAddress: config.paymaster,
 			gasPriceFactorPercent: 70,
 			relayLookupWindowBlocks: 1e5,

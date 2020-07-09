@@ -66,8 +66,8 @@ module.exports = {
 		},
 		matic: {
 			provider: () =>
-				new HDWalletProvider(mnemonic, 'https://testnetv3.matic.network'),
-			network_id: 15001,
+				new HDWalletProvider(mnemonic, 'https://rpc-mumbai.matic.today'),
+			network_id: 80001,
 			gasPrice: '0x0',
 			confirmations: 2,
 			timeoutBlocks: 200,
